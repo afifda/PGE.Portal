@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="a12eed65-de71-4a3b-8789-7822142c7f30" solutionId="a12eed65-de71-4a3b-8789-7822142c7f30" resetWebServer="false" sharePointProductVersion="15.0" name="PGE.Portal" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="PGEPortal.Service.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\PGEPortal.Service\PGEPortal.Service.csproj" />
+    <customAssembly location="UtilityLibrary.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\..\..\..\..\..\..\Shared\DLL\UtilityLibrary.dll" />
+  </assemblies>
+  <projectItems>
+    <projectItemReference itemId="3e38c9cc-96a9-4c6a-9ebd-2aef3d7329d5" />
+    <projectItemReference itemId="c718a458-68fe-4b90-9f37-42fbe4a10305" />
+  </projectItems>
+</package>
