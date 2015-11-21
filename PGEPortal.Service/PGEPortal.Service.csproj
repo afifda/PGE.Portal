@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\BaseLogic.cs" />
+    <Compile Include="BusinessLogic\MasterDataLogic.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="DataAccess\BaseDataAccess.cs" />
     <Compile Include="DataAccess\BaseEnum.cs" />

@@ -20,10 +20,10 @@ namespace PGE.Portal
             public const string INPUT_KATEGORY_APP_TYPE = "InputKategoryApp";
             public const string INPUT_KATEGORY_APP_CHILD_TYPE = "InputKategoryAppChild";
 
-            public const string INPUT_MENU_TITLE = "Master Data Main Menu";
-            public const string INPUT_MENU_CHILD_TITLE = "Master Data Main Menu Child";
-            public const string INPUT_KATEGORY_APP_TITLE = "Master Data Kategory App";
-            public const string INPUT_KATEGORY_APP_CHILD_TITLE = "Master Data Kategory App Child";
+            public const string INPUT_MENU_TITLE = "Master Menu";
+            public const string INPUT_MENU_CHILD_TITLE = "Master Menu Child";
+            public const string INPUT_KATEGORY_APP_TITLE = "Master Kategory App";
+            public const string INPUT_KATEGORY_APP_CHILD_TITLE = "Master Kategory App Child";
         #endregion
 
         #region Message

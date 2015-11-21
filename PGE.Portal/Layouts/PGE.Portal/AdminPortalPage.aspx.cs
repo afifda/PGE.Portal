@@ -92,8 +92,82 @@ namespace PGE.Portal.Layouts.PGE.Portal
             }
         #endregion
 
+        #region Master Main Menu Child
+
+            [System.Web.Services.WebMethod]
+            public static List<MainMenuEntity> LoadMainMenu()
+            {
+                List<MainMenuEntity> menuList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    menuList = logic.SPRead<MainMenuEntity>(new MainMenuEntity() { Id = 0 });                  
+                }
+                catch (Exception ex)
+                {
+                    return menuList;
+                }
+                return menuList;
+            }    
+
+            [System.Web.Services.WebMethod]
+            public static List<MainMenuChildEntity> LoadMasterMainMenuChild()
+            {
+                List<MainMenuChildEntity> menuChildList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    menuChildList = logic.SPRead<MainMenuChildEntity>(new MainMenuChildEntity() { Id = 0 });
+                }
+                catch (Exception ex)
+                {
+                    return menuChildList;
+                }
+                return menuChildList;
+            }
+
+            [System.Web.Services.WebMethod]
+            public static string SaveMasterMenuChild(string masterMenuChildString, bool isEdit)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                MainMenuChildEntity mainMenuChild = (MainMenuChildEntity)serializer.Deserialize(masterMenuChildString, typeof(MainMenuChildEntity));
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    if (isEdit) logic.SPUpdate<MainMenuChildEntity>(mainMenuChild);
+                    else logic.SPSave<MainMenuChildEntity>(mainMenuChild);
+                }
+                catch (SqlException sqlEx)
+                {
+                    if (sqlEx.Message.Contains("duplicate")) return string.Format("Menu {0} yang anda masukkan telah tersedia", mainMenuChild.MenuChildName);
+                    else return string.Format("Telah terjadi error. ({0})", sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return string.Format("Telah terjadi error. ({0})", ex.Message);
+                }
+                return "Berhasil. Master Menu Child telah disimpan.";
+            }
+
+            [System.Web.Services.WebMethod]
+            public static string DeleteMasterMenuChild(int IdChild)
+                {
+                    try
+                    {
+                        BaseLogic logic = new BaseLogic();
+                        logic.SPDelete<MainMenuChildEntity>(new MainMenuChildEntity() { Id = IdChild });
+                    }
+                    catch (Exception ex)
+                    {
+                        return "Telah terjadi error";
+                    }
+                    return "Success";
+                }
+        
+        #endregion
+
         #region Master Main Link App
-            
+
             [System.Web.Services.WebMethod]
             public static List<MainKategoryAppEntity> LoadMasterKategoriApp()
             {

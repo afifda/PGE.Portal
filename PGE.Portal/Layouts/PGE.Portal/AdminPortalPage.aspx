@@ -14,6 +14,7 @@
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
     <div id="ControlContainer" runat="server" ClientIDMode="Static">
         <input type="hidden" id="hfEditMode" />
+        <asp:HiddenField ID="hfId" runat="server" ClientIDMode="Static"/>
     </div>
     <div id="dialog-confirm"></div>
 </asp:Content>
@@ -23,5 +24,5 @@ Admin Portal Page
 </asp:Content>
 
 <asp:Content ID="PageTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
-Admin Portal Page
+
 </asp:Content>

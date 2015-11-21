@@ -62,6 +62,12 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 case Constant.INPUT_MENU_TYPE:
                     return Constant.INPUT_MENU_TITLE;
+                case Constant.INPUT_MENU_CHILD_TYPE:
+                    return Constant.INPUT_MENU_CHILD_TITLE;
+                case Constant.INPUT_KATEGORY_APP_TYPE:
+                    return Constant.INPUT_KATEGORY_APP_TITLE;
+                case Constant.INPUT_KATEGORY_APP_CHILD_TYPE:
+                    return Constant.INPUT_KATEGORY_APP_CHILD_TITLE;
                 default: return string.Empty;
             }
         }

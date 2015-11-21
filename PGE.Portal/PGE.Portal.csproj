@@ -129,6 +129,7 @@
     <Content Include="Layouts\PGE.Portal\AdminPortalPage.aspx" />
     <Content Include="Layouts\PGE.Portal\js\date.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoriApp.js" />
+    <Content Include="Layouts\PGE.Portal\js\InputMenuChild.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenu.js" />
     <Content Include="Layouts\PGE.Portal\js\jquery.dataTables.min.js" />
     <Content Include="Layouts\PGE.Portal\js\jquery.formatCurrency-1.4.0.min.js" />
