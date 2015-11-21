@@ -166,7 +166,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
         
         #endregion
 
-        #region Master Main Link App
+        #region Master Main Kategory App
 
             [System.Web.Services.WebMethod]
             public static List<MainKategoryAppEntity> LoadMasterKategoriApp()
@@ -223,5 +223,79 @@ namespace PGE.Portal.Layouts.PGE.Portal
             }
 
         #endregion
+
+        #region Master Main Kategory Child
+
+            [System.Web.Services.WebMethod]
+            public static List<MainKategoryAppEntity> LoadMainKategory()
+            {
+                List<MainKategoryAppEntity> kategoryList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    kategoryList = logic.SPRead<MainKategoryAppEntity>(new MainKategoryAppEntity() { Id = 0 });
+                }
+                catch (Exception ex)
+                {
+                    return kategoryList;
+                }
+                return kategoryList;
+            }
+
+            [System.Web.Services.WebMethod]
+            public static List<MainKategoryChildAppEntity> LoadMasterMainKategoryAppChild()
+            {
+                List<MainKategoryChildAppEntity> kategoryChildList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    kategoryChildList = logic.SPRead<MainKategoryChildAppEntity>(new MainKategoryChildAppEntity() { Id = 0 });
+                }
+                catch (Exception ex)
+                {
+                    return kategoryChildList;
+                }
+                return kategoryChildList;
+            }
+
+            [System.Web.Services.WebMethod]
+            public static string SaveMasterKategoryAppChild(string masterKategoryAppChildString, bool isEdit)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                MainKategoryChildAppEntity kategoryChild = (MainKategoryChildAppEntity)serializer.Deserialize(masterKategoryAppChildString, typeof(MainKategoryChildAppEntity));
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    if (isEdit) logic.SPUpdate<MainKategoryChildAppEntity>(kategoryChild);
+                    else logic.SPSave<MainKategoryChildAppEntity>(kategoryChild);
+                }
+                catch (SqlException sqlEx)
+                {
+                    if (sqlEx.Message.Contains("duplicate")) return string.Format("Menu {0} yang anda masukkan telah tersedia", kategoryChild.LinkAppName);
+                    else return string.Format("Telah terjadi error. ({0})", sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return string.Format("Telah terjadi error. ({0})", ex.Message);
+                }
+                return "Berhasil. Master Menu Child telah disimpan.";
+            }
+
+            [System.Web.Services.WebMethod]
+            public static string DeleteMasterKategoryAppChild(int IdChild)
+            {
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    logic.SPDelete<MainKategoryChildAppEntity>(new MainKategoryChildAppEntity() { Id = IdChild });
+                }
+                catch (Exception ex)
+                {
+                    return "Telah terjadi error";
+                }
+                return "Success";
+            }
+
+            #endregion
     }
 }
