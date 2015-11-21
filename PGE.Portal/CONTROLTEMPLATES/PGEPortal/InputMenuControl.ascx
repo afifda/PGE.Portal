@@ -8,14 +8,12 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="InputMenuControl.ascx.cs" Inherits="PGE.Portal.CONTROLTEMPLATES.PGEPortal.InputMenuControl" %>
 <div class="border">
     <div id="wrapping" class="clearfix">
-        <div class="title-h1">Master User</div>
+        <div class="title-h1">Master Menu</div>
         <div class="div">
-             <table id="tblMasterUser" class="tabelgrid">
+             <table id="tblMasterMenu" class="tabelgrid">
                   <thead>                
-                    <tr>   
-                       <th class="header-grid">ID Menu</th>
-                       <th class="header-grid">Nama Menu</th>
-                       <th class="header-grid">Parent Menu</th>
+                    <tr>                          
+                       <th class="header-grid">Nama Menu</th>                       
                        <th class="header-grid">Url Menu</th>
                        <th class="header-grid">Action</th>
                     </tr>
@@ -34,37 +32,30 @@
                         <h4 class="modal-title">Detail Menu</h4>
                     </div>
                     <div class="modal-body">
-                        <div>
-                            <div class="div">
-                                <span class="lbl">ID Menu <span class="red">*</span></span>
-                                <span class="titikdua">:</span>
-                                <input name="txtIDMenu" class="input" maxlength="20" id="txtIDMenu" type="text" />
-                            </div>
+                        <div>                            
                             <div class="div">
                                 <span class="lbl">Nama Menu <span class="red">*</span></span>
                                 <span class="titikdua">:</span>
                                 <input name="txtNamaMenu" class="input" maxlength="50" id="txtNamaMenu" type="text" />
-                            </div>
-                            <div class="div">
-                                <span class="lbl">Parent Menu <span class="red">*</span></span>
-                                <span class="titikdua">:</span>
-                                <input name="txtParentMenu" class="input" maxlength="50" id="txtParentMenu" type="text" />
-                            </div>   
+                            </div>                             
                             <div class="div">
                                 <span class="lbl">Url Menu <span class="red">*</span></span>
                                 <span class="titikdua">:</span>
-                                <input id="ddlUrl" class="input" maxlength="50" name="ddlUrl" type="text"/>
+                                <input id="txtUrl" class="input" maxlength="50" name="txtUrl" type="text"/>
                             </div>                                                
                         </div>                
                     </div>
                     <div class="modal-footer">
                         <input type="button" id="btnSaveMasterMenu" value="Simpan" class="button"/>
-                        <input type="button" data-dismiss="modal" value="Batal" class="button"/>
-                        <%--<button type="button" data-dismiss="modal" class="button">Tutup</button>--%>
+                        <input type="button" data-dismiss="modal" value="Batal" class="button"/>                        
                     </div>
                 </div>
             </div>
         </div>    
     </div>
 </div>
-<script src="../../../_layouts/15/PGE.Portal/js/InputMenu.js"></script>
+<%--<script src="../../../_layouts/15/PGE.Portal/js/InputMenu.js"></script>--%>
+
+<script src="../../../_layouts/15/PGE.Portal/js/InputMenu.js" type="text/javascript"></script>
+<script src="../../../_layouts/15/PGE.Portal/js/date.js"></script>
+<script src="../../../_layouts/15/PGE.Portal/js/jquery.formatCurrency-1.4.0.min.js"></script>

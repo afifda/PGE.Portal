@@ -27,7 +27,7 @@ namespace PGEPortal.Service.DataAccess
         {
             Connection = new DoubleASqlConnection();
             //Connection.ConnectionString = ConfigurationManager.ConnectionStrings[ConnectionStringOptions.CSRConnection.ToString()].ConnectionString;
-            Connection.ConnectionString = @"Data Source=.;Initial Catalog=PGE_Portal;Persist Security Info=True;User ID=sa;Password=pass@word1";
+            Connection.ConnectionString = @"Data Source=.;Initial Catalog=PGEPortal;Persist Security Info=True;User ID=sa;Password=pass@word1";
             //Connection.ConnectionString = @"Data Source=sqlpge02;Initial Catalog=PGE_CSR;Persist Security Info=True;User ID=sa;Password=sqlserver2012PGE";
         }
         public BaseDataAccess(ConnectionStringOptions connectionString)

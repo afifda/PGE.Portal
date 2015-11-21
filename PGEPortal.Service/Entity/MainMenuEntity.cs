@@ -9,17 +9,16 @@ namespace PGEPortal.Service.Entity
 {
     [Table("[MainMenu]", true, false, "", "usp_SaveMainMenu", "usp_ReadMainMenu", "usp_UpdateMainMenu", "usp_DeleteMainMenu")]
     public class MainMenuEntity
-    {
-        [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: true, isInsertParam: false, isPrimaryKey: true)]
-        public int Id { get; set; }
-
-        [Column(name: "MenuName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+    {       
+        [Column(name: "MenuName", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
         public string MenuName { get; set; }
+
         [Column(name: "MenuUrl", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
         public string MenuUrl { get; set; }
     }
 
     [Table("[MainMenuChild]", true, false, "", "usp_SaveMainMenuChild", "usp_ReadMainMenuChild", "usp_UpdateMainMenuChild", "usp_DeleteMainMenuChild")]
+   
     public class MainMenuChildEntity
     {
         [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: true, isInsertParam: false, isPrimaryKey: true)]
