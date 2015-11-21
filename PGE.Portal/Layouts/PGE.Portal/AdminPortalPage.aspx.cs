@@ -36,60 +36,60 @@ namespace PGE.Portal.Layouts.PGE.Portal
             ControlContainer.Controls.Add(control);
         }
 
-        #region Master Area
-            //[System.Web.Services.WebMethod]
-            //public static List<MasterAreaEntity> LoadMasterArea()
-            //{
-            //    List<MasterAreaEntity> areaList = null;
-            //    try
-            //    {
-            //        MasterDataLogic logic = new MasterDataLogic();
-            //        areaList = logic.SPRead<MasterAreaEntity>(new MasterAreaEntity() { AreaCode = "" });
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return areaList;
-            //    }
-            //    return areaList;
-            //}
+        #region Master Main Menu
+            [System.Web.Services.WebMethod]
+            public static List<MainMenuEntity> LoadMasterMainMenu()
+                {
+                    List<MainMenuEntity> menuList = null;
+                    try
+                    {
+                        BaseLogic logic = new BaseLogic();
+                        menuList = logic.SPRead<MainMenuEntity>(new MainMenuEntity() { MenuName = "" });
+                    }
+                    catch (Exception ex)
+                    {
+                        return menuList;
+                    }
+                    return menuList;
+                }
 
             [System.Web.Services.WebMethod]
-        public static string SaveMasterMenu(string masterMenuString, bool isEdit)
+            public static string SaveMasterMenu(string masterMenuString, bool isEdit)
+                {
+                    JavaScriptSerializer serializer = new JavaScriptSerializer();
+                    MainMenuEntity mainMenu = (MainMenuEntity)serializer.Deserialize(masterMenuString, typeof(MainMenuEntity));
+                    try
+                    {
+                        BaseLogic logic = new BaseLogic();
+                        if (isEdit) logic.SPUpdate<MainMenuEntity>(mainMenu);
+                        else logic.SPSave<MainMenuEntity>(mainMenu);
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        if (sqlEx.Message.Contains("duplicate")) return string.Format("Menu {0} yang anda masukkan telah tersedia", mainMenu.MenuName);
+                        else return string.Format("Telah terjadi error. ({0})", sqlEx.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        return string.Format("Telah terjadi error. ({0})", ex.Message);
+                    }
+                    return "Success. Master Menu telah disimpan.";
+                }
+
+            [System.Web.Services.WebMethod]
+            public static string DeleteMasterMenu(string menuName)
             {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                MainMenuEntity mainMenu = (MainMenuEntity)serializer.Deserialize(masterMenuString, typeof(MainMenuEntity));
                 try
                 {
                     BaseLogic logic = new BaseLogic();
-                    if (isEdit) logic.SPUpdate<MainMenuEntity>(mainMenu);
-                    else logic.SPSave<MainMenuEntity>(mainMenu);
-                }
-                catch (SqlException sqlEx)
-                {
-                    if (sqlEx.Message.Contains("duplicate")) return string.Format("Menu {0} yang anda masukkan telah tersedia", mainMenu.MenuName);
-                    else return string.Format("Telah terjadi error. ({0})", sqlEx.Message);
+                    logic.SPDelete<MainMenuEntity>(new MainMenuEntity() { MenuName = menuName });
                 }
                 catch (Exception ex)
                 {
-                    return string.Format("Telah terjadi error. ({0})", ex.Message);
+                    return "Telah terjadi error";
                 }
-                return "Success. Master Menu telah disimpan.";
+                return "Success";
             }
-
-            //[System.Web.Services.WebMethod]
-            //public static string DeleteMasterArea(string kodeArea)
-            //{
-            //    try
-            //    {
-            //        MasterDataLogic logic = new MasterDataLogic();
-            //        logic.SPDelete<MasterAreaEntity>(new MasterAreaEntity() { AreaCode = kodeArea });
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        return "Telah terjadi error";
-            //    }
-            //    return "Success";
-            //}
         #endregion
     }
 }

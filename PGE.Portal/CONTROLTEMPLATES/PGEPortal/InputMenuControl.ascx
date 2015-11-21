@@ -6,9 +6,9 @@
 <%@ Import Namespace="Microsoft.SharePoint" %> 
 <%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="InputMenuControl.ascx.cs" Inherits="PGE.Portal.CONTROLTEMPLATES.PGEPortal.InputMenuControl" %>
-<div class="border">
+<%--<div class="border">--%>
     <div id="wrapping" class="clearfix">
-        <div class="title-h1">Master Menu</div>
+        <div class="title-h1">Master Main Menu</div>
         <div class="div">
              <table id="tblMasterMenu" class="tabelgrid">
                   <thead>                
@@ -21,14 +21,14 @@
            </table>
         </div>
         <div class="button-template2">
-            <input type="button" id="btnAddMasterUser" value="Tambah"/>
+            <input type="button" id="btnAddMasterMenu" value="Tambah"/>
         </div>
         
-        <div class="modal" id="modalMasterUser">
+        <div class="modal" id="modalMasterMenu">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
                         <h4 class="modal-title">Detail Menu</h4>
                     </div>
                     <div class="modal-body">
@@ -41,7 +41,7 @@
                             <div class="div">
                                 <span class="lbl">Url Menu <span class="red">*</span></span>
                                 <span class="titikdua">:</span>
-                                <input id="txtUrl" class="input" maxlength="50" name="txtUrl" type="text"/>
+                                <input id="txtUrl" class="input" name="txtUrl" type="text"/>
                             </div>                                                
                         </div>                
                     </div>
@@ -53,9 +53,6 @@
             </div>
         </div>    
     </div>
-</div>
-<%--<script src="../../../_layouts/15/PGE.Portal/js/InputMenu.js"></script>--%>
+<%--</div>--%>
 
 <script src="../../../_layouts/15/PGE.Portal/js/InputMenu.js" type="text/javascript"></script>
-<script src="../../../_layouts/15/PGE.Portal/js/date.js"></script>
-<script src="../../../_layouts/15/PGE.Portal/js/jquery.formatCurrency-1.4.0.min.js"></script>

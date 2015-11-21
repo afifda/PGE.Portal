@@ -7,7 +7,7 @@ using UtilityLibrary;
 
 namespace PGEPortal.Service.Entity
 {
-    [Table("[MainMenu]", true, false, "", "usp_SaveMainMenu", "usp_ReadMainMenu", "usp_UpdateMainMenu", "usp_DeleteMainMenu")]
+    [Table("[MainMenu]", true, false, "", "usp_SaveMainMenu", "usp_ReadMasterMainMenu", "usp_UpdateMainMenu", "usp_DeleteMainMenu")]
     public class MainMenuEntity
     {       
         [Column(name: "MenuName", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
