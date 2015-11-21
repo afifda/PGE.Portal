@@ -17,8 +17,7 @@ namespace PGEPortal.Service.Entity
         public string MenuUrl { get; set; }
     }
 
-    [Table("[MainMenuChild]", true, false, "", "usp_SaveMainMenuChild", "usp_ReadMainMenuChild", "usp_UpdateMainMenuChild", "usp_DeleteMainMenuChild")]
-   
+    [Table("[MainMenuChild]", true, false, "", "usp_SaveMainMenuChild", "usp_ReadMainMenuChild", "usp_UpdateMainMenuChild", "usp_DeleteMainMenuChild")]   
     public class MainMenuChildEntity
     {
         [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: true, isInsertParam: false, isPrimaryKey: true)]
@@ -32,5 +31,13 @@ namespace PGEPortal.Service.Entity
         public string MenuChildName { get; set; }
         [Column(name: "MenuChildUrl", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
         public string MenuChildUrl { get; set; }
+    }
+
+    [Table("[MainKategoryApp]", true, false, "", "usp_SaveMainKategoryApp", "usp_ReadMainKategoryApp", "usp_UpdateMainKategoryApp", "usp_DeleteMainKategoryApp")]
+    public class MainKategoryAppEntity
+    {
+        [Column(name: "LinkAppKategoryName", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public string LinkAppKategoryName { get; set; }
+      
     }
 }

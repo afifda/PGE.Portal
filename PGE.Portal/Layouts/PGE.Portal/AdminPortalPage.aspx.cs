@@ -91,5 +91,63 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 return "Success";
             }
         #endregion
+
+        #region Master Main Link App
+            
+            [System.Web.Services.WebMethod]
+            public static List<MainKategoryAppEntity> LoadMasterKategoriApp()
+            {
+                List<MainKategoryAppEntity> kategoryAppList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    kategoryAppList = logic.SPRead<MainKategoryAppEntity>(new MainKategoryAppEntity() { LinkAppKategoryName = "" });
+                }
+                catch (Exception ex)
+                {
+                    return kategoryAppList;
+                }
+                return kategoryAppList;
+            }
+
+            [System.Web.Services.WebMethod]
+            public static string SaveKategoryApp(string LinkAppKategoryName, bool isEdit)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                MainKategoryAppEntity mainKategoryApp = (MainKategoryAppEntity)serializer.Deserialize(LinkAppKategoryName, typeof(MainKategoryAppEntity));
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    if (isEdit) logic.SPUpdate<MainKategoryAppEntity>(mainKategoryApp);
+                    else logic.SPSave<MainKategoryAppEntity>(mainKategoryApp);
+                }
+                catch (SqlException sqlEx)
+                {
+                    if (sqlEx.Message.Contains("duplicate")) return string.Format("Kategori {0} yang anda masukkan telah tersedia", mainKategoryApp.LinkAppKategoryName);
+                    else return string.Format("Telah terjadi error. ({0})", sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return string.Format("Telah terjadi error. ({0})", ex.Message);
+                }
+                return "Success. Master Kategori Aplikasi telah disimpan.";
+            }
+
+            [System.Web.Services.WebMethod]
+            public static string DeleteKategoryApp(string masterkategoryAppString)
+            {
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    logic.SPDelete<MainKategoryAppEntity>(new MainKategoryAppEntity() { LinkAppKategoryName = masterkategoryAppString });
+                }
+                catch (Exception ex)
+                {
+                    return "Telah terjadi error";
+                }
+                return "Success";
+            }
+
+        #endregion
     }
 }
