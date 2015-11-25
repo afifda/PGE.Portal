@@ -302,15 +302,31 @@ namespace PGE.Portal.Layouts.PGE.Portal
 
         #region Master Main Pic
             [System.Web.Services.WebMethod]
+            public static List<MainPicEntity> LoadMasterMainPic()
+            {
+                List<MainPicEntity> picList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    picList = logic.SPRead<MainPicEntity>(new MainPicEntity() { Path = "" });
+                }
+                catch (Exception ex)
+                {
+                    return picList;
+                }
+                return picList;
+            }
+
+            [System.Web.Services.WebMethod]
             public static string SaveMasterMainPic(string fileToUpload, bool isEdit)
             {
 
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
-
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 try
                 {                                                            
-                    SPSite site = new SPSite("http://server-local12:8282/sites/PGEPortal/");
+                    SPSite site = new SPSite(sites);
 
                     using (site)
                     {
@@ -337,18 +353,22 @@ namespace PGE.Portal.Layouts.PGE.Portal
 
                             //where docu is my  document library
                             SPListItemCollection items = docLib.Items;
-                            string  urlPicLib ="";
-                            string name = "";
+                            string  urlPicLib ="";                            
+                            string url = "";
                             foreach (SPListItem item in items)
                             {
-                                string url = item.Url;                                
-                                if (item.Name.ToString = mainMenu.FileName)
-                                {
-                                    urlPicLib = item.Name;
+                                 
+                                if (item.Name == mainMenu.FileName) {
+                                    urlPicLib = item.Url;
+                                    mainMenu.Path = sites+urlPicLib;
                                 }
                             }           
         
                             // Here to save url db//
+
+                            BaseLogic logic = new BaseLogic();
+                            if (isEdit) logic.SPUpdate<MainPicEntity>(mainMenu);
+                            else logic.SPSave<MainPicEntity>(mainMenu);
 
 
                         }
@@ -358,7 +378,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 {
                     return string.Format("Telah terjadi error. ({0})", ex.Message);
                 }
-                return "Berhasil. Master Menu Child telah disimpan.";
+                return "Berhasil. Master Main Picture telah disimpan.";
             }
         #endregion        
     }

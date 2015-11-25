@@ -33,12 +33,7 @@
                         <h4 class="modal-title">Detail Main Picture</h4>
                     </div>
                     <div class="modal-body">
-                        <div>            
-                            <div class="div">
-                                <span class="lbl">Picture Name <span class="red">*</span></span>
-                                <span class="titikdua">:</span>
-                                <input id="txtPicName" class="input" name="txtPicName" type="text"/>              
-                            </div>                
+                        <div>                                              
                             <div class="div">
                                 <span class="lbl">Picture <span class="red">*</span></span>
                                 <span class="titikdua">:</span>
