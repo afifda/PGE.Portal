@@ -96,6 +96,24 @@
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx.designer.cs">
       <DependentUpon>InputMenuControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx.cs">
+      <DependentUpon>MenuControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx.designer.cs">
+      <DependentUpon>MenuControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx.cs">
+      <DependentUpon>ShowImageSliderControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx.designer.cs">
+      <DependentUpon>ShowImageSliderControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx.cs">
+      <DependentUpon>ShowMenuControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx.designer.cs">
+      <DependentUpon>ShowMenuControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\PGE.Portal\AdminPortalPage.aspx.cs">
       <DependentUpon>AdminPortalPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -134,6 +152,9 @@
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuChildControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx" />
+    <Content Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx" />
+    <Content Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx" />
+    <Content Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx" />
     <Content Include="Layouts\PGE.Portal\AdminPortalPage.aspx" />
     <Content Include="Layouts\PGE.Portal\js\date.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoriApp.js" />
