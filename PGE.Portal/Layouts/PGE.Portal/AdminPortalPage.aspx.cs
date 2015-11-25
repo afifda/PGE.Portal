@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using PGEPortal.Service.Entity;
 using PGEPortal.Service.BusinessLogic;
+using System.Web;
+using System.IO;
 
 
 
@@ -297,5 +299,67 @@ namespace PGE.Portal.Layouts.PGE.Portal
             }
 
             #endregion
+
+        #region Master Main Pic
+            [System.Web.Services.WebMethod]
+            public static string SaveMasterMainPic(string fileToUpload, bool isEdit)
+            {
+
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
+
+                try
+                {                                                            
+                    SPSite site = new SPSite("http://server-local12:8282/sites/PGEPortal/");
+
+                    using (site)
+                    {
+                        SPWeb web = site.OpenWeb();
+                        web.AllowUnsafeUpdates = true; 
+                        using (web)
+                        {
+                            SPFolder picLibrary = web.Lists["MainGallery"].RootFolder;
+
+
+                            byte[] picFile = null;
+
+                            using (FileStream fStream = new FileStream(mainMenu.Path, FileMode.Open))
+                            {
+                                picFile = new byte[(int)fStream.Length];
+                                fStream.Read(picFile, 0, (int)fStream.Length);
+                                fStream.Close();
+                            }
+
+                            SPFile file = picLibrary.Files.Add(mainMenu.FileName, picFile);
+                            picLibrary.Update();
+                            
+                            SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
+
+                            //where docu is my  document library
+                            SPListItemCollection items = docLib.Items;
+                            string  urlPicLib ="";
+                            string name = "";
+                            foreach (SPListItem item in items)
+                            {
+                                string url = item.Url;                                
+                                if (item.Name.ToString = mainMenu.FileName)
+                                {
+                                    urlPicLib = item.Name;
+                                }
+                            }           
+        
+                            // Here to save url db//
+
+
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return string.Format("Telah terjadi error. ({0})", ex.Message);
+                }
+                return "Berhasil. Master Menu Child telah disimpan.";
+            }
+        #endregion        
     }
 }

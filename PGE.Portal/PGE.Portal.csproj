@@ -75,6 +75,13 @@
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppControl.ascx.designer.cs">
       <DependentUpon>InputKategoryAppControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx.cs">
+      <DependentUpon>InputMainPic.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx.designer.cs">
+      <DependentUpon>InputMainPic.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMenuChildControl.ascx.cs">
       <DependentUpon>InputMenuChildControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,12 +131,14 @@
   <ItemGroup>
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppChildControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppControl.ascx" />
+    <Content Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuChildControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx" />
     <Content Include="Layouts\PGE.Portal\AdminPortalPage.aspx" />
     <Content Include="Layouts\PGE.Portal\js\date.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoriApp.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoryAppChild.js" />
+    <Content Include="Layouts\PGE.Portal\js\InputMainPic.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenuChild.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenu.js" />
     <Content Include="Layouts\PGE.Portal\js\jquery.dataTables.min.js" />
