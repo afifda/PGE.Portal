@@ -61,6 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant.cs" />
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputBottomPic.ascx.cs">
+      <DependentUpon>InputBottomPic.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputBottomPic.ascx.designer.cs">
+      <DependentUpon>InputBottomPic.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppChildControl.ascx.cs">
       <DependentUpon>InputKategoryAppChildControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -98,18 +105,21 @@
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx.cs">
       <DependentUpon>MenuControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx.designer.cs">
       <DependentUpon>MenuControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx.cs">
       <DependentUpon>ShowImageSliderControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx.designer.cs">
       <DependentUpon>ShowImageSliderControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx.cs">
       <DependentUpon>ShowMenuControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx.designer.cs">
       <DependentUpon>ShowMenuControl.ascx.cs</DependentUpon>
@@ -147,6 +157,7 @@
     <Folder Include="Layouts\PGE.Portal\images\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CONTROLTEMPLATES\PGEPortal\InputBottomPic.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppChildControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx" />
@@ -159,6 +170,7 @@
     <Content Include="Layouts\PGE.Portal\js\date.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoriApp.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoryAppChild.js" />
+    <Content Include="Layouts\PGE.Portal\js\InputBottomPic.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMainPic.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenuChild.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenu.js" />
