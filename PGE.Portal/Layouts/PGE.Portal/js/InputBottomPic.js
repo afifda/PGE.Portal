@@ -52,6 +52,7 @@ function Init() {
                     '<td style = "display:none">' + picList[i].Id + ' </td>' +
                     '<td >' + picList[i].FileName + ' </td>' +
                     '<td >' + picList[i].Path + ' </td>' +
+                    '<td >' + picList[i].LinkTo + ' </td>' +
                     '<td align="Center"><input type="button"  class="button2 btnDelete" value="Hapus"/> </td> ' +
                     '</tr>';
                     $(strhtml).appendTo($("#tblMasterBottomPic"));
@@ -116,6 +117,7 @@ function saveBottomPic() {
     var masterMenu = new Object();
 
     masterMenu.Path = $("#fuAttachment").val();
+    masterMenu.LinkTo = $("#txtLinkTo").val();
     //var fname = masterMenu.Path.replace(/\\/g, '/');
     //masterMenu.FileName = fname.substring(fname.lastIndexOf('/') + 1, fname.lastIndexOf('.'));
     var lastIndex = masterMenu.Path.lastIndexOf("\\");

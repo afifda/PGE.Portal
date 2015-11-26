@@ -14,7 +14,8 @@
                   <thead>                
                     <tr>                          
                        <th class="header-grid">Picture Name</th> 
-                       <th class="header-grid">Picture Path</th>                       
+                       <th class="header-grid">Picture Path</th> 
+                        <th class="header-grid">Link To</th> 
                        <th class="header-grid">Action</th>
                     </tr>
                  </thead>
@@ -33,7 +34,12 @@
                         <h4 class="modal-title">Detail Bottom Picture</h4>
                     </div>
                     <div class="modal-body">
-                        <div>                                              
+                        <div>               
+                             <div class="div">
+                                <span class="lbl">Link Picture <span class="red">*</span></span>
+                                <span class="titikdua">:</span>
+                                <input name="txtLinkTo" class="input" id="txtLinkTo" type="text" />
+                            </div>                               
                             <div class="div">
                                 <span class="lbl">Picture <span class="red">*</span></span>
                                 <span class="titikdua">:</span>
