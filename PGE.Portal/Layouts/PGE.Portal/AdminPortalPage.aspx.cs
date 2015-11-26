@@ -9,6 +9,7 @@ using PGEPortal.Service.Entity;
 using PGEPortal.Service.BusinessLogic;
 using System.Web;
 using System.IO;
+using PGEPortal.Service.DataAccess;
 
 
 
@@ -304,13 +305,13 @@ namespace PGE.Portal.Layouts.PGE.Portal
             [System.Web.Services.WebMethod]
             public static string SaveMasterMainPic(string fileToUpload, bool isEdit)
             {
-
+                BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
-
+                int success = 0;
                 try
-                {                                                            
-                    SPSite site = new SPSite("http://server-local12:8282/sites/PGEPortal/");
+                {
+                    SPSite site = new SPSite("http://affandi:100/sites/pgeportal/");
 
                     using (site)
                     {
@@ -319,7 +320,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                         using (web)
                         {
                             SPFolder picLibrary = web.Lists["MainGallery"].RootFolder;
-
+                            
 
                             byte[] picFile = null;
 
@@ -332,23 +333,22 @@ namespace PGE.Portal.Layouts.PGE.Portal
 
                             SPFile file = picLibrary.Files.Add(mainMenu.FileName, picFile);
                             picLibrary.Update();
+                            string URLIMG = "";
+                            string FileName = "";
+                            FileName = mainMenu.FileName;
+                            URLIMG = site.Url+file.Url;
                             
                             SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
-
-                            //where docu is my  document library
-                            SPListItemCollection items = docLib.Items;
-                            string  urlPicLib ="";
-                            string name = "";
-                            foreach (SPListItem item in items)
+                            try
                             {
-                                string url = item.Url;                                
-                                if (item.Name.ToString = mainMenu.FileName)
-                                {
-                                    urlPicLib = item.Name;
-                                }
-                            }           
-        
-                            // Here to save url db//
+                                success = logic.SaveImgPic(URLIMG, FileName);
+                               
+                            }
+                            catch (Exception ex)
+                            {
+                                
+                                return string.Format("Telah terjadi error Pada saat Simpan File to DB. ({0})", ex.Message);
+                            }
 
 
                         }

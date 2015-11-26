@@ -296,10 +296,10 @@ namespace PGEPortal.Service.BusinessLogic
         //    return new AttachmentSQLDataAccess().GetAttachments(attachmntEntity);
         //}
 
-        //public int SaveAttachment(List<AttachmentEntity> attachmentList)
-        //{
-        //    return new AttachmentSQLDataAccess().SaveAttachment(attachmentList);
-        //}
+        public int SaveImgPic(string Path, string FileName)
+        {
+            return new DocumentDataAccess().SaveImgPic(Path, FileName);
+        }
 
         //public int SaveAttachmentToSharePointLibrary(string SiteURL, string DocLib, List<AttachmentEntity> attachmentCRUDList)
         //{

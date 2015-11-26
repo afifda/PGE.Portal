@@ -70,7 +70,7 @@ namespace PGEPortal.Service.Entity
 
     }
 
-    [Table("[MainPic]", true, false, "", "usp_SaveMainMenu", "usp_ReadMasterMainMenu", "usp_UpdateMainMenu", "usp_DeleteMainMenu")]
+    [Table("[MainPic]", true, false, "", "usp_SaveMainPic", "usp_ReadMasterMainMenu", "usp_UpdateMainMenu", "usp_DeleteMainMenu")]
     public class MainPicEntity
     {
         [Column(name: "Id", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
