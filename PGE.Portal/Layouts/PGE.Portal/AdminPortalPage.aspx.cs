@@ -380,6 +380,39 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 }
                 return "Berhasil. Master Main Picture telah disimpan.";
             }
+
+            [System.Web.Services.WebMethod]
+            public static string DeleteMasterMainPic(string fileToUpload)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
+
+                try
+                {     
+                    SPSite site = new SPSite(sites);
+                    using (site)
+                    {
+                        SPWeb web = site.OpenWeb();
+                        web.AllowUnsafeUpdates = true;
+                        using (web)
+                        {
+                            SPFolder folder = web.Folders["MainGallery"];
+                            SPFile file = folder.Files[mainMenu.FileName];
+                            file.Delete();
+
+                            BaseLogic logic = new BaseLogic();
+                            logic.SPDelete<MainPicEntity>(new MainPicEntity() { Id = mainMenu.Id });
+
+                        }
+                    }                                                            
+                }
+                catch (Exception ex)
+                {
+                    return string.Format("Telah terjadi error. ({0})", ex.Message);
+                }
+                return "Success";
+            }
         #endregion        
     }
 }

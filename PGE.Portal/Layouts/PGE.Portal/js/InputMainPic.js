@@ -20,13 +20,18 @@
         }
         saveMainPic();
     });
+
+    $('#btnDelMainPic').click(function () {
+        var row = $('#hfdelrow').val();
+    }); 
     
     $('#tblMasterMainPic').on("click", ".btnDelete", deleteMainPic);
    
 });
 
-function clearModalMasterMainPic() {
-    $("#fuAttachment").val("");    
+function clearModalMasterMainPic() {        
+    var _fileuploadcontrolId = $("#fuAttachment");
+    _fileuploadcontrolId.replaceWith(_fileuploadcontrolId = _fileuploadcontrolId.clone(true));
 }
 
 function Init() {
@@ -73,52 +78,35 @@ function editMenu() {
 
 function deleteMainPic() {
     var $element = this;
-    var row = $($element).parents("tr:first");
-    $("#dialog-confirm").html("Apakah anda yakin menghapus Menu ini?");
+    var row = $($element).parents("tr:first");      
+    
+    var masterMenu = new Object();
+    masterMenu.Id = row.children()[0].innerText.trim();
+    masterMenu.FileName = row.children()[1].innerText;    
 
-    // Define the Dialog and its properties.
-    $("#dialog-confirm").dialog({
-        resizable: false,
-        modal: true,
-        title: "Warning",
-        height: 150,
-        width: 350,
-        buttons: {
-            "Ya": function () {
+    var parameter = new Object();
+    parameter.fileToUpload = JSON.stringify(masterMenu);
 
-                var menuNameKey = row.children()[1].innerText;
-                var parameter = {
-                    menuName: menuNameKey
-                };
-                $.ajax({
-                    type: "POST",
-                    url: window.location.pathname + "/DeleteMasterMenu",
-                    async: false,
-                    cache: false,
-                    data: JSON.stringify(parameter),
-                    contentType: "application/json; charset=utf-8",
-                    datatype: "json",
-                    async: false,
-                    success: function (response) {
-                        var Menu = response.d;
-                        if (Menu == "Success") {
-                            $("#modalMasterMenu").modal("hide");
-                            alert("Master Menu telah dihapus.")
-                            Init();
-                        }
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                        $("#modalMasterMenu").modal("hide");
-                    }
-                });
-                $(this).dialog('close');
-            },
-            "Tidak": function () {
-                $(this).dialog('close');
+    $.ajax({
+        type: "POST",
+        url: window.location.pathname + "/DeleteMasterMainPic",
+        async: false,
+        cache: false,
+        data: JSON.stringify(parameter),
+        contentType: "application/json; charset=utf-8",
+        datatype: "json",
+        async: false,
+        success: function (response) {
+            var Menu = response.d;
+            if (Menu == "Success") {                
+                alert("Master Main Picture telah dihapus.")
+                Init();
             }
+        },
+        error: function (response) {
+            alert(response.responseText);            
         }
-    });
+    });    
 }
 
 function saveMainPic() {
