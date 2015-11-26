@@ -319,12 +319,11 @@ namespace PGE.Portal.Layouts.PGE.Portal
 
             [System.Web.Services.WebMethod]
             public static string SaveMasterMainPic(string fileToUpload, bool isEdit)
-            {
-                BaseLogic logic = new BaseLogic();
+            {                
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
                 string sites = "http://server-local12:8282/sites/PGEPortal/";
-                int success = 0;
+                //int success = 0;
                 try
                 {                                                            
                     SPSite site = new SPSite(sites);
@@ -353,39 +352,43 @@ namespace PGE.Portal.Layouts.PGE.Portal
                             SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
                             #region febri
                             //where docu is my  document library
-                            //SPListItemCollection items = docLib.Items;
-                            //string  urlPicLib ="";                            
-                            //string url = "";
-                            //foreach (SPListItem item in items)
-                            //{
+                            SPListItemCollection items = docLib.Items;
+                            string urlPicLib = "";
+                            
+                            foreach (SPListItem item in items)
+                            {
 
-                            //    if (item.Name == mainMenu.FileName) {
-                            //        urlPicLib = item.Url;
-                            //        mainMenu.Path = sites+urlPicLib;
-                            //    }
-                            //}           
+                                if (item.Name == mainMenu.FileName)
+                                {
+                                    urlPicLib = item.Url;
+                                    mainMenu.Path = sites + urlPicLib;
+                                }
+                            }           
 
                             // Here to save url db//
 
-                            //BaseLogic logic = new BaseLogic();
-                            //if (isEdit) logic.SPUpdate<MainPicEntity>(mainMenu);
-                            //else logic.SPSave<MainPicEntity>(mainMenu);
+                            BaseLogic logic = new BaseLogic();
+                            if (isEdit) logic.SPUpdate<MainPicEntity>(mainMenu);
+                            else logic.SPSave<MainPicEntity>(mainMenu);
+
                             #endregion
-                            string URLIMG = "";
-                            string FileName = "";
-                            FileName = mainMenu.FileName;
-                            URLIMG = site.Url + file.Url;
-                            try
-                            {
-                                success = logic.SaveImgPic(URLIMG, FileName);
 
-                            }
-                            catch (Exception ex)
-                            {
+                            #region fandi
+                            //string URLIMG = "";
+                            //string FileName = "";
+                            //FileName = mainMenu.FileName;
+                            //URLIMG = site.Url + file.Url;
+                            //try
+                            //{
+                            //    success = logic.SaveImgPic(URLIMG, FileName);
 
-                                return string.Format("Telah terjadi error Pada saat Simpan File to DB. ({0})", ex.Message);
-                            }
-                            
+                            //}
+                            //catch (Exception ex)
+                            //{
+
+                            //    return string.Format("Telah terjadi error Pada saat Simpan File to DB. ({0})", ex.Message);
+                            //}
+                            #endregion
 
 
                         }
