@@ -70,13 +70,13 @@ namespace PGEPortal.Service.Entity
 
     }
 
-    [Table("[MainPic]", true, false, "", "usp_SaveMainPic", "usp_ReadMasterMainMenu", "usp_UpdateMainMenu", "usp_DeleteMainMenu")]
+    [Table("[MainPic]", true, false, "", "usp_SaveMainPic", "usp_ReadMasterMainPic", "usp_UpdateMainPic", "usp_DeleteMainPic")]
     public class MainPicEntity
     {
-        [Column(name: "Id", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
         public int Id { get; set; }
 
-        [Column(name: "Path", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
+        [Column(name: "Path", isDeleteParam: false, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
         public string Path { get; set; }
 
         [Column(name: "FileName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]

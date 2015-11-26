@@ -8,9 +8,9 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="InputMainPic.ascx.cs" Inherits="PGE.Portal.CONTROLTEMPLATES.PGEPortal.InputMainPic" %>
 
 <div id="wrapping" class="clearfix">
-        <div class="title-h1">Master Main Picture</div>
+        <div class="title-h2">Master Main Picture</div>
         <div class="div">
-             <table id="tblMasterMainPic" class="tabelgrid">
+             <table id="tblMasterMainPic" class="table">
                   <thead>                
                     <tr>                          
                        <th class="header-grid">Picture Name</th> 
@@ -22,7 +22,7 @@
         </div>
 
          <div class="button-template2">
-            <input type="button" id="btnAddMasterMainPic" value="Tambah"/>
+            <input type="button" id="btnAddMasterMainPic" value="Tambah" class="button-template"/>
         </div>
 
     <div class="modal" id="modalMasterMainPic">
@@ -33,12 +33,7 @@
                         <h4 class="modal-title">Detail Main Picture</h4>
                     </div>
                     <div class="modal-body">
-                        <div>            
-                            <div class="div">
-                                <span class="lbl">Picture Name <span class="red">*</span></span>
-                                <span class="titikdua">:</span>
-                                <input id="txtPicName" class="input" name="txtPicName" type="text"/>              
-                            </div>                
+                        <div>                                              
                             <div class="div">
                                 <span class="lbl">Picture <span class="red">*</span></span>
                                 <span class="titikdua">:</span>
@@ -47,12 +42,32 @@
                         </div>                
                     </div>
                     <div class="modal-footer">
-                        <input type="button" id="btnSaveMasterMainPic" value="Simpan" class="button"/>
-                        <input type="button" data-dismiss="modal" value="Batal" class="button"/>                        
+                        <input type="button" id="btnSaveMasterMainPic" value="Simpan" class="button-template"/>
+                        <input type="button" data-dismiss="modal" value="Batal" class="button-template"/>                        
                     </div>
                 </div>
             </div>
-        </div>    
+        </div> 
+    
+    <div class="modal" id="modalMasterMainPicDelete">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirm Delete Main Picture</h4>
+                    </div>    
+                    <div class="modal-body">
+                        <div>                                                                                                                                         
+                            <input name="hfdelrow" class="input" maxlength="50" id="hfdelrow" type="text" />
+                        </div>                
+                    </div>                
+                    <div class="modal-footer">
+                        <input type="button" id="btnDelMainPic" value="Yes" class="button-template"/>
+                        <input type="button" data-dismiss="modal" value="No" class="button-template"/>                        
+                    </div>
+                </div>
+            </div>
+        </div>   
 </div>
 
 <script src="../../../_layouts/15/PGE.Portal/js/InputMainPic.js" type="text/javascript"></script>

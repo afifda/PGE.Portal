@@ -9,7 +9,6 @@ using PGEPortal.Service.Entity;
 using PGEPortal.Service.BusinessLogic;
 using System.Web;
 using System.IO;
-using PGEPortal.Service.DataAccess;
 
 
 
@@ -303,15 +302,32 @@ namespace PGE.Portal.Layouts.PGE.Portal
 
         #region Master Main Pic
             [System.Web.Services.WebMethod]
+            public static List<MainPicEntity> LoadMasterMainPic()
+            {
+                List<MainPicEntity> picList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    picList = logic.SPRead<MainPicEntity>(new MainPicEntity() { Path = "" });
+                }
+                catch (Exception ex)
+                {
+                    return picList;
+                }
+                return picList;
+            }
+
+            [System.Web.Services.WebMethod]
             public static string SaveMasterMainPic(string fileToUpload, bool isEdit)
             {
                 BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 int success = 0;
                 try
-                {
-                    SPSite site = new SPSite("http://affandi:100/sites/pgeportal/");
+                {                                                            
+                    SPSite site = new SPSite(sites);
 
                     using (site)
                     {
@@ -320,7 +336,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                         using (web)
                         {
                             SPFolder picLibrary = web.Lists["MainGallery"].RootFolder;
-                            
+
 
                             byte[] picFile = null;
 
@@ -333,22 +349,43 @@ namespace PGE.Portal.Layouts.PGE.Portal
 
                             SPFile file = picLibrary.Files.Add(mainMenu.FileName, picFile);
                             picLibrary.Update();
+                            
+                            SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
+                            #region febri
+                            //where docu is my  document library
+                            //SPListItemCollection items = docLib.Items;
+                            //string  urlPicLib ="";                            
+                            //string url = "";
+                            //foreach (SPListItem item in items)
+                            //{
+
+                            //    if (item.Name == mainMenu.FileName) {
+                            //        urlPicLib = item.Url;
+                            //        mainMenu.Path = sites+urlPicLib;
+                            //    }
+                            //}           
+
+                            // Here to save url db//
+
+                            //BaseLogic logic = new BaseLogic();
+                            //if (isEdit) logic.SPUpdate<MainPicEntity>(mainMenu);
+                            //else logic.SPSave<MainPicEntity>(mainMenu);
+                            #endregion
                             string URLIMG = "";
                             string FileName = "";
                             FileName = mainMenu.FileName;
-                            URLIMG = site.Url+file.Url;
-                            
-                            SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
+                            URLIMG = site.Url + file.Url;
                             try
                             {
                                 success = logic.SaveImgPic(URLIMG, FileName);
-                               
+
                             }
                             catch (Exception ex)
                             {
-                                
+
                                 return string.Format("Telah terjadi error Pada saat Simpan File to DB. ({0})", ex.Message);
                             }
+                            
 
 
                         }
@@ -358,7 +395,40 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 {
                     return string.Format("Telah terjadi error. ({0})", ex.Message);
                 }
-                return "Berhasil. Master Menu Child telah disimpan.";
+                return "Berhasil. Master Main Picture telah disimpan.";
+            }
+
+            [System.Web.Services.WebMethod]
+            public static string DeleteMasterMainPic(string fileToUpload)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
+
+                try
+                {     
+                    SPSite site = new SPSite(sites);
+                    using (site)
+                    {
+                        SPWeb web = site.OpenWeb();
+                        web.AllowUnsafeUpdates = true;
+                        using (web)
+                        {
+                            SPFolder folder = web.Folders["MainGallery"];
+                            SPFile file = folder.Files[mainMenu.FileName];
+                            file.Delete();
+
+                            BaseLogic logic = new BaseLogic();
+                            logic.SPDelete<MainPicEntity>(new MainPicEntity() { Id = mainMenu.Id });
+
+                        }
+                    }                                                            
+                }
+                catch (Exception ex)
+                {
+                    return string.Format("Telah terjadi error. ({0})", ex.Message);
+                }
+                return "Success";
             }
         #endregion        
     }
