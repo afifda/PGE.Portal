@@ -40,6 +40,8 @@ namespace PGE.Portal.Layouts.PGE.Portal
                     return Constant.INPUT_KATEGORY_APP_CHILD_CONTROL;
                 case Constant.INPUT_MAIN_PICTURE_TYPE:
                     return Constant.INPUT_MAIN_PICTURE_CONTROL;
+                case Constant.INPUT_BOTTOM_PICTURE_TYPE:
+                     return Constant.INPUT_BOTTOM_PICTURE_CONTROL;
                 case Constant.INPUT_MAIN_EVENT:
                     return Constant.INPUT_MAIN_EVENT_CONTROL;
                 case Constant.INPUT_MAIN_NEWS:
@@ -76,6 +78,8 @@ namespace PGE.Portal.Layouts.PGE.Portal
                     return Constant.INPUT_KATEGORY_APP_CHILD_TITLE;
                 case Constant.INPUT_MAIN_PICTURE_TYPE:
                     return Constant.INPUT_MAIN_PICTURE_TITLE;
+                case Constant.INPUT_BOTTOM_PICTURE_TYPE:
+                    return Constant.INPUT_BOTTOM_PICTURE_TITLE;
                 case Constant.INPUT_MAIN_EVENT:
                     return Constant.INPUT_MAIN_EVENT_TITLE;
                 case Constant.INPUT_MAIN_NEWS:

@@ -3,6 +3,9 @@
   <assemblies>
     <projectOutputAssembly location="PGEPortal.Service.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\PGEPortal.Service\PGEPortal.Service.csproj" />
   </assemblies>
+  <features>
+    <featureReference itemId="931a16e1-5cde-4a80-a519-cadbc43a2a8c" />
+  </features>
   <projectItems>
     <projectItemReference itemId="3e38c9cc-96a9-4c6a-9ebd-2aef3d7329d5" />
     <projectItemReference itemId="c718a458-68fe-4b90-9f37-42fbe4a10305" />
