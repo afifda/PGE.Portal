@@ -15,18 +15,24 @@ namespace PGE.Portal
             public const string INPUT_KATEGORY_APP_CONTROL = "InputKategoryAppControl.ascx";
             public const string INPUT_KATEGORY_APP_CHILD_CONTROL = "InputKategoryAppChildControl.ascx";
             public const string INPUT_MAIN_PICTURE_CONTROL = "InputMainPic.ascx";
+            public const string INPUT_MAIN_EVENT_CONTROL = "InputMasterEvent.ascx";
+            public const string INPUT_MAIN_NEWS_CONTROL = "InputMasterNews.ascx";
 
             public const string INPUT_MENU_TYPE = "InputMenu";
             public const string INPUT_MENU_CHILD_TYPE = "InputMenuChild";
             public const string INPUT_KATEGORY_APP_TYPE = "InputKategoryApp";
             public const string INPUT_KATEGORY_APP_CHILD_TYPE = "InputKategoryAppChild";
             public const string INPUT_MAIN_PICTURE_TYPE = "InputMainPic";
-
+            public const string INPUT_MAIN_EVENT = "InputMasterEvent";
+            public const string INPUT_MAIN_NEWS = "InputMasterNews";
+            
             public const string INPUT_MENU_TITLE = "Master Menu";
             public const string INPUT_MENU_CHILD_TITLE = "Master Menu Child";
             public const string INPUT_KATEGORY_APP_TITLE = "Master Kategory App";
             public const string INPUT_KATEGORY_APP_CHILD_TITLE = "Master Kategory App Child";
             public const string INPUT_MAIN_PICTURE_TITLE = "Master Main Picture";
+            public const string INPUT_MAIN_EVENT_TITLE = "Master Main Event";
+            public const string INPUT_MAIN_NEWS_TITLE = "Master Main News";
         #endregion
 
         #region Message

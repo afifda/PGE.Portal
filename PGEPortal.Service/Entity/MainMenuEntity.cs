@@ -83,4 +83,50 @@ namespace PGEPortal.Service.Entity
         public string FileName { get; set; }
     }
 
+    [Table("[Event]", true, false, "", "usp_SaveEvent", "usp_ReadMasterEvent", "usp_UpdateEvent", "usp_DeleteEvent")]
+    public class MainEventEntity
+    {
+        [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Tittle", isDeleteParam: false, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
+        public string Tittle { get; set; }
+
+        [Column(name: "DataEvent", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public DateTime DateEvent { get; set; }
+
+        [Column(name: "EventText", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string EventText { get; set; }
+
+        [Column(name: "PicturePath", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string PicturePath { get; set; }
+
+        [Column(name: "FileName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string FileName { get; set; }
+    }
+
+    [Table("[News]", true, false, "", "usp_SaveNews", "usp_ReadMasterNews", "usp_UpdateNews", "usp_DeleteNews")]
+    public class MainNewsEntity
+    {
+        [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Tittle", isDeleteParam: false, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
+        public string Tittle { get; set; }
+
+        [Column(name: "DateNews", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public DateTime DateNews { get; set; }
+
+        [Column(name: "NewsText", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string NewsText { get; set; }
+
+        [Column(name: "PicturePath", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string PicturePath { get; set; }
+
+        [Column(name: "FileName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string FileName { get; set; }
+    }
+
+
+
 }
