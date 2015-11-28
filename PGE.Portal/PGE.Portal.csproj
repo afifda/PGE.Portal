@@ -42,12 +42,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
@@ -91,21 +93,32 @@
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx.cs">
       <DependentUpon>MenuControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx.designer.cs">
       <DependentUpon>MenuControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx.cs">
       <DependentUpon>ShowImageSliderControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx.designer.cs">
       <DependentUpon>ShowImageSliderControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx.cs">
       <DependentUpon>ShowMenuControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx.designer.cs">
       <DependentUpon>ShowMenuControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage\HomePage.ascx.cs">
+      <DependentUpon>HomePage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="HomePage\HomePage.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomePage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Layouts\PGE.Portal\AdminPortalPage.aspx.cs">
       <DependentUpon>AdminPortalPage.aspx</DependentUpon>
@@ -123,6 +136,13 @@
     <None Include="CONTROLTEMPLATES\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c718a458-68fe-4b90-9f37-42fbe4a10305}</SharePointProjectItemId>
     </None>
+    <None Include="Features\Feature2\Feature2.feature">
+      <FeatureId>{931a16e1-5cde-4a80-a519-cadbc43a2a8c}</FeatureId>
+    </None>
+    <None Include="HomePage\HomePage.webpart" />
+    <None Include="HomePage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bc203202-4da7-430e-b613-911c8fd6805c}</SharePointProjectItemId>
+    </None>
     <None Include="key.snk" />
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3e38c9cc-96a9-4c6a-9ebd-2aef3d7329d5}</SharePointProjectItemId>
@@ -135,7 +155,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
     <Folder Include="Layouts\PGE.Portal\css\" />
     <Folder Include="Layouts\PGE.Portal\images\" />
   </ItemGroup>
@@ -147,8 +166,17 @@
     <Content Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx" />
+    <Content Include="Features\Feature2\Feature2.Template.xml">
+      <DependentUpon>Feature2.feature</DependentUpon>
+    </Content>
+    <Content Include="HomePage\Elements.xml" />
+    <Content Include="HomePage\HomePage.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>HomePage.ascx.g.cs</LastGenOutput>
+    </Content>
     <Content Include="Layouts\PGE.Portal\AdminPortalPage.aspx" />
     <Content Include="Layouts\PGE.Portal\js\date.js" />
+    <Content Include="Layouts\PGE.Portal\js\HomePage.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoriApp.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoryAppChild.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenuChild.js" />

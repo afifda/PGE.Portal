@@ -39,7 +39,7 @@ namespace PGEPortal.Service.Entity
         public string MenuChildUrl { get; set; }
     }
 
-    [Table("[MainKategoryApp]", true, false, "", "usp_SaveMainKategoryApp", "usp_ReadMainKategoryApp", "usp_UpdateMainKategoryApp", "usp_DeleteMainKategoryApp")]
+    [Table("[MainKategoryApp]", true, false, "", "usp_SaveMainKategoryApp", "usp_GetMainKategoryApp", "usp_UpdateMainKategoryApp", "usp_DeleteMainKategoryApp")]
     public class MainKategoryAppEntity
     {
         [Column(name: "Id", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
@@ -50,7 +50,7 @@ namespace PGEPortal.Service.Entity
       
     }
 
-    [Table("[MainKategoryChildApp]", true, false, "", "usp_SaveMainKategoryChildApp", "usp_ReadMainKategoryChildApp", "usp_UpdateMainKategoryChildApp", "usp_DeleteMainKategoryChildApp")]
+    [Table("[MainKategoryChildApp]", true, false, "", "usp_SaveMainKategoryChildApp", "usp_GetMainKategoryChildByKategoryID", "usp_UpdateMainKategoryChildApp", "usp_DeleteMainKategoryChildApp")]
     public class MainKategoryChildAppEntity
     {
         [Column(name: "Id", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: false, isPrimaryKey: true)]
@@ -59,8 +59,8 @@ namespace PGEPortal.Service.Entity
         [Column(name: "ParentId", isUpdateParam: true, isAllowNull: false, isReadParam: false, isInsertParam: true, isPrimaryKey: false)]
         public int ParentId { get; set; }
 
-        [Column(name: "LinkAppKategoryName", isUpdateParam: false, isAllowNull: false, isInsertParam: false)]
-        public string LinkAppKategoryName { get; set; }
+        //[Column(name: "LinkAppKategoryName", isUpdateParam: false, isAllowNull: false, isInsertParam: false)]
+        //public string LinkAppKategoryName { get; set; }
 
         [Column(name: "LinkAppName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
         public string LinkAppName { get; set; }
