@@ -32,6 +32,16 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 case Constant.INPUT_MENU_TYPE:
                     return Constant.INPUT_MENU_CONTROL;
+                case Constant.INPUT_MENU_CHILD_TYPE:
+                    return Constant.INPUT_MENU_CHILD_CONTROL;
+                case Constant.INPUT_KATEGORY_APP_TYPE:
+                    return Constant.INPUT_KATEGORY_APP_CONTROL;
+                case Constant.INPUT_KATEGORY_APP_CHILD_TYPE:
+                    return Constant.INPUT_KATEGORY_APP_CHILD_CONTROL;
+                case Constant.INPUT_MAIN_PICTURE_TYPE:
+                    return Constant.INPUT_MAIN_PICTURE_CONTROL;
+                case Constant.INPUT_BOTTOM_PICTURE_TYPE:
+                     return Constant.INPUT_BOTTOM_PICTURE_CONTROL;
                 default: return string.Empty;
             }
         }
@@ -56,6 +66,16 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 case Constant.INPUT_MENU_TYPE:
                     return Constant.INPUT_MENU_TITLE;
+                case Constant.INPUT_MENU_CHILD_TYPE:
+                    return Constant.INPUT_MENU_CHILD_TITLE;
+                case Constant.INPUT_KATEGORY_APP_TYPE:
+                    return Constant.INPUT_KATEGORY_APP_TITLE;
+                case Constant.INPUT_KATEGORY_APP_CHILD_TYPE:
+                    return Constant.INPUT_KATEGORY_APP_CHILD_TITLE;
+                case Constant.INPUT_MAIN_PICTURE_TYPE:
+                    return Constant.INPUT_MAIN_PICTURE_TITLE;
+                case Constant.INPUT_BOTTOM_PICTURE_TYPE:
+                    return Constant.INPUT_BOTTOM_PICTURE_TITLE;
                 default: return string.Empty;
             }
         }

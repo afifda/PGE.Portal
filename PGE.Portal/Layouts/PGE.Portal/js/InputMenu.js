@@ -1,10 +1,12 @@
 ﻿$(document).ready(function () {
+//$(function () {
     Init();
 
     $('#btnAddMasterMenu').click(function () {
         clearModalMasterMenu();
         $('#hfEditMode').val('0');
         $('#modalMasterMenu').modal('show');
+        $("#txtNamaMenu").attr('disabled', false);
     });
 
     $('#btnSaveMasterMenu').click(function () {
@@ -26,13 +28,14 @@
 
 function clearModalMasterMenu() {
     $("#txtNamaMenu").val("");
+    $("#txtUrl").val("");
 }
 
 function Init() {
     $('#tblMasterMenu tbody').remove();
     $.ajax({
         type: "POST",
-        url: window.location.pathname + "/LoadMasterMenu",
+        url: window.location.pathname + "/LoadMasterMainMenu",
         data: "{}",
         contentType: "application/json; charset=utf-8",
         datatype: "json",
@@ -43,12 +46,12 @@ function Init() {
                 for (i = 0; i < Menu.length; i++) {
                     var seq = i + 1;
                     var strhtml = '<tr id="MenuRow_"' + seq + '>' +
-                        '<td style = "display:none">' + Menu[i].KP_Kode + ' </td>' +
-                        '<td >' + Menu[i].KP_Nama + ' </td>' +
-                        '<td align="Center"><input type="button"  class="button2 btnEdit" value="Ubah"/><input type="button"  class="button2 btnDelete" value="Hapus"/> </td> ' +
-                        '</tr>';
+                    '<td style = "display:none">' + Menu[i].MenuName + ' </td>' +
+                    '<td >' + Menu[i].MenuName + ' </td>' +
+                    '<td >' + Menu[i].MenuUrl + ' </td>' +
+                    '<td align="Center"><input type="button"  class="button2 btnEdit" value="Ubah"/><input type="button"  class="button2 btnDelete" value="Hapus"/> </td> ' +
+                    '</tr>';
                     $(strhtml).appendTo($("#tblMasterMenu"));
-
                 }
             }
         },
@@ -65,8 +68,9 @@ function editMenu() {
     clearModalMasterMenu();
     $("#hfEditMode").val("1");
     $("#modalMasterMenu").modal("show");
-    $("#hfKodeMenu").val(row.children()[0].innerText)
+    $("#txtNamaMenu").attr('disabled', true);
     $("#txtNamaMenu").val(row.children()[1].innerText)
+    $("#txtUrl").val(row.children()[2].innerText)
 }
 
 function deleteMenu() {
@@ -84,9 +88,9 @@ function deleteMenu() {
         buttons: {
             "Ya": function () {
 
-                var KodeMenu = row.children()[0].innerText;
+                var menuNameKey = row.children()[1].innerText;
                 var parameter = {
-                    kodeMenu: KodeMenu
+                    menuName: menuNameKey
                 };
                 $.ajax({
                     type: "POST",
@@ -124,11 +128,12 @@ function saveMenu() {
     var editMode = $("#hfEditMode").val();
     if (editMode == 0) EditMethod = false;
     var masterMenu = new Object();
-    masterMenu.KP_Kode = $("#hfKodeMenu").val();
-    masterMenu.KP_Nama = $("#txtNamaMenu").val();
+    masterMenu.MenuName = $("#txtNamaMenu").val();
+    masterMenu.MenuUrl = $("#txtUrl").val();
     var parameter = new Object();
     parameter.masterMenuString = JSON.stringify(masterMenu);
     parameter.isEdit = EditMethod;
+
     $.ajax({
         type: "POST",
         url: window.location.pathname + "/SaveMasterMenu",
