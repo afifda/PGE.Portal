@@ -14,6 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
+    <TokenReplacementFileExtensions>ashx</TokenReplacementFileExtensions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,6 +61,9 @@
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx.designer.cs">
       <DependentUpon>InputMenuControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\GenericPortal.ashx.cs">
+      <DependentUpon>GenericPortal.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\PGE.Portal\AdminPortalPage.aspx.cs">
       <DependentUpon>AdminPortalPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -77,6 +81,7 @@
       <SharePointProjectItemId>{c718a458-68fe-4b90-9f37-42fbe4a10305}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
+    <None Include="Layouts\GenericPortal.ashx" />
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3e38c9cc-96a9-4c6a-9ebd-2aef3d7329d5}</SharePointProjectItemId>
     </None>
