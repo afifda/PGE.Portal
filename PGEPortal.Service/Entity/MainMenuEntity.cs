@@ -69,4 +69,36 @@ namespace PGEPortal.Service.Entity
         public string LinkAppUrl { get; set; }
 
     }
+
+    [Table("[MainPic]", true, false, "", "usp_SaveMainPic", "usp_ReadMasterMainPic", "usp_UpdateMainPic", "usp_DeleteMainPic")]
+    public class MainPicEntity
+    {
+        [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Path", isDeleteParam: false, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
+        public string Path { get; set; }
+
+        [Column(name: "FileName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string FileName { get; set; }
+    }
+
+    [Table("[BottomPic]", true, false, "", "usp_SaveBottomPic", "usp_ReadMasterBottomPic", "usp_UpdateBottomPic", "usp_DeleteBottomPic")]
+    public class BottomPicEntity
+    {
+        [Column(name: "Id", isDeleteParam: true, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Path", isDeleteParam: false, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: false)]
+        public string Path { get; set; }
+
+        [Column(name: "FileName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string FileName { get; set; }
+
+
+        [Column(name: "LinkTo", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
+        public string LinkTo { get; set; }
+
+    }
+
 }

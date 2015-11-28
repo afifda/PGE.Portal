@@ -14,6 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
+    <TokenReplacementFileExtensions>ashx</TokenReplacementFileExtensions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,6 +64,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant.cs" />
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputBottomPic.ascx.cs">
+      <DependentUpon>InputBottomPic.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputBottomPic.ascx.designer.cs">
+      <DependentUpon>InputBottomPic.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppChildControl.ascx.cs">
       <DependentUpon>InputKategoryAppChildControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -77,6 +85,13 @@
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppControl.ascx.designer.cs">
       <DependentUpon>InputKategoryAppControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx.cs">
+      <DependentUpon>InputMainPic.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx.designer.cs">
+      <DependentUpon>InputMainPic.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMenuChildControl.ascx.cs">
       <DependentUpon>InputMenuChildControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -90,6 +105,9 @@
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx.designer.cs">
       <DependentUpon>InputMenuControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\GenericPortal.ashx.cs">
+      <DependentUpon>GenericPortal.ashx</DependentUpon>
     </Compile>
     <Compile Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx.cs">
       <DependentUpon>MenuControl.ascx</DependentUpon>
@@ -144,6 +162,7 @@
       <SharePointProjectItemId>{bc203202-4da7-430e-b613-911c8fd6805c}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
+    <None Include="Layouts\GenericPortal.ashx" />
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3e38c9cc-96a9-4c6a-9ebd-2aef3d7329d5}</SharePointProjectItemId>
     </None>
@@ -159,8 +178,10 @@
     <Folder Include="Layouts\PGE.Portal\images\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CONTROLTEMPLATES\PGEPortal\InputBottomPic.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppChildControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppControl.ascx" />
+    <Content Include="CONTROLTEMPLATES\PGEPortal\InputMainPic.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuChildControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx" />
@@ -179,6 +200,8 @@
     <Content Include="Layouts\PGE.Portal\js\HomePage.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoriApp.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoryAppChild.js" />
+    <Content Include="Layouts\PGE.Portal\js\InputBottomPic.js" />
+    <Content Include="Layouts\PGE.Portal\js\InputMainPic.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenuChild.js" />
     <Content Include="Layouts\PGE.Portal\js\InputMenu.js" />
     <Content Include="Layouts\PGE.Portal\js\jquery.dataTables.min.js" />
