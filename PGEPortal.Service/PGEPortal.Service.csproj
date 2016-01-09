@@ -61,6 +61,7 @@
     <Compile Include="DataAccess\BaseEnum.cs" />
     <Compile Include="DataAccess\BaseSPDataAccess.cs" />
     <Compile Include="DataAccess\DocumentDataAccess.cs" />
+    <Compile Include="DataAccess\HomePageDataAccess.cs" />
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\MainMenuEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

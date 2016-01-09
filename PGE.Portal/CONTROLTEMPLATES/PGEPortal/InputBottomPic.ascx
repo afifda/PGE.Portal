@@ -8,6 +8,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="InputBottomPic.ascx.cs" Inherits="PGE.Portal.CONTROLTEMPLATES.PGEPortal.InputBottomPic" %>
 
 <div id="wrapping" class="clearfix">
+       <div class="border-list">	
         <div class="title-h2">Master Bottom Picture</div>
         <div class="div">
              <table id="tblMasterBottomPic" class="table">
@@ -22,11 +23,11 @@
            </table>
         </div>
 
-         <div class="button-template2">
+        <div class="button-template2">
             <input type="button" id="btnAddMasterBottomPic" value="Tambah" class="button-template"/>
         </div>
 
-    <div class="modal" id="modalMasterBottomPic">
+        <div class="modal" id="modalMasterBottomPic">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -55,25 +56,23 @@
             </div>
         </div> 
     
-    <div class="modal" id="modalMasterBottomPicDelete">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Confirm Delete Bottom Picture</h4>
-                    </div>    
-                    <div class="modal-body">
-                        <div>                                                                                                                                         
-                            <input name="hfdelrow" class="input" maxlength="50" id="hfdelrow" type="text" />
-                        </div>                
-                    </div>                
-                    <div class="modal-footer">
-                        <input type="button" id="btnDelBottomPic" value="Yes" class="button-template"/>
-                        <input type="button" data-dismiss="modal" value="No" class="button-template"/>                        
+        <div class="modal" id="modalMasterBottomPicDelete">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Confirm Delete Bottom Picture</h4>
+                            <input type="hidden" id="hffilename" />
+                        </div>                                     
+                        <div class="modal-footer">
+                            <input type="button" id="btnDelBottomPic" value="Yes" class="button-template"/>
+                            <input type="button" data-dismiss="modal" value="No" class="button-template"/>                        
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>   
+            </div>   
+        <div style="clear:both;"></div>
+    </div>  
 </div>
 
 <script src="../../../_layouts/15/PGE.Portal/js/InputBottomPic.js" type="text/javascript"></script>

@@ -39,10 +39,10 @@ namespace PGEPortal.Service.Entity
         public string MenuChildUrl { get; set; }
     }
 
-    [Table("[MainKategoryApp]", true, false, "", "usp_SaveMainKategoryApp", "usp_GetMainKategoryApp", "usp_UpdateMainKategoryApp", "usp_DeleteMainKategoryApp")]
+    [Table("[MainKategoryApp]", true, false, "", "usp_SaveMainKategoryApp", "usp_ReadMainKategoryApp", "usp_UpdateMainKategoryApp", "usp_DeleteMainKategoryApp")]
     public class MainKategoryAppEntity
     {
-        [Column(name: "Id", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        [Column(name: "Id", isDeleteParam: false, isUpdateParam: true, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
         public int Id { get; set; }
 
         [Column(name: "LinkAppKategoryName", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
@@ -50,7 +50,7 @@ namespace PGEPortal.Service.Entity
       
     }
 
-    [Table("[MainKategoryChildApp]", true, false, "", "usp_SaveMainKategoryChildApp", "usp_GetMainKategoryChildByKategoryID", "usp_UpdateMainKategoryChildApp", "usp_DeleteMainKategoryChildApp")]
+    [Table("[MainKategoryChildApp]", true, false, "", "usp_SaveMainKategoryChildApp", "usp_ReadMainKategoryChildApp", "usp_UpdateMainKategoryChildApp", "usp_DeleteMainKategoryChildApp")]
     public class MainKategoryChildAppEntity
     {
         [Column(name: "Id", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: false, isPrimaryKey: true)]
@@ -59,8 +59,8 @@ namespace PGEPortal.Service.Entity
         [Column(name: "ParentId", isUpdateParam: true, isAllowNull: false, isReadParam: false, isInsertParam: true, isPrimaryKey: false)]
         public int ParentId { get; set; }
 
-        //[Column(name: "LinkAppKategoryName", isUpdateParam: false, isAllowNull: false, isInsertParam: false)]
-        //public string LinkAppKategoryName { get; set; }
+        [Column(name: "LinkAppKategoryName", isUpdateParam: false, isAllowNull: false, isInsertParam: false)]
+        public string LinkAppKategoryName { get; set; }
 
         [Column(name: "LinkAppName", isUpdateParam: true, isAllowNull: false, isInsertParam: true)]
         public string LinkAppName { get; set; }
@@ -145,6 +145,87 @@ namespace PGEPortal.Service.Entity
         public string FileName { get; set; }
     }
 
+    #region HQ
+    [Table("[News]", true, false, "", "", "usp_GetNews", "", "")]
+    public class NewsEntity
+    {
+        [Column(name: "Id", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Tittle", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public string Tittle { get; set; }
+
+        [Column(name: "DateNews", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public DateTime DateNews { get; set; }
+
+        [Column(name: "NewsText", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public string NewsText { get; set; }
+
+        [Column(name: "PicturePath", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public string PicturePath { get; set; }
+
+    }
 
 
+    [Table("[Event]", true, false, "", "", "usp_GetEvent", "", "")]
+    public class EventEntity
+    {
+        [Column(name: "Id", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Tittle", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public string Tittle { get; set; }
+
+        [Column(name: "DateEvent", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public DateTime DateEvent { get; set; }
+
+        [Column(name: "EventText", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public string EventText { get; set; }
+
+        [Column(name: "PicturePath", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public string PicturePath { get; set; }
+
+    }
+#endregion
+
+
+    [Table("[News]", true, false, "", "", "usp_GetNewsById", "", "")]
+    public class NewsEntityById
+    {
+        [Column(name: "Id", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Tittle", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public string Tittle { get; set; }
+
+        [Column(name: "DateNews", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public DateTime DateNews { get; set; }
+
+        [Column(name: "NewsText", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public string NewsText { get; set; }
+
+        [Column(name: "PicturePath", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public string PicturePath { get; set; }
+
+    }
+
+    [Table("[Event]", true, false, "", "", "usp_GetEventById", "", "")]
+    public class EventEntityById
+    {
+        [Column(name: "Id", isDeleteParam: true, isUpdateParam: true, isAllowNull: false, isReadParam: true, isInsertParam: true, isPrimaryKey: true)]
+        public int Id { get; set; }
+
+        [Column(name: "Tittle", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public string Tittle { get; set; }
+
+        [Column(name: "DateEvent", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public DateTime DateEvent { get; set; }
+
+        [Column(name: "EventText", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public string EventText { get; set; }
+
+        [Column(name: "PicturePath", isDeleteParam: false, isUpdateParam: false, isAllowNull: false, isReadParam: false, isInsertParam: false, isPrimaryKey: false)]
+        public string PicturePath { get; set; }
+
+    }
 }

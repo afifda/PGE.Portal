@@ -21,6 +21,8 @@
     });
 
     $('#tblMasterKategoriApp').on("click", ".btnDelete", deletekategoriApp);
+
+    $('#tblMasterKategoriApp').on("click", ".btnEdit", editMenuMainApp);
 });
 
 function clearModalMasterkategoriApp() {
@@ -43,9 +45,9 @@ function Init() {
                 for (i = 0; i < kategoriApp.length; i++) {
                     var seq = i + 1;
                     var strhtml = '<tr id="MenuRow_"' + seq + '>' +
-                    '<td style = "display:none">' + kategoriApp[i].LinkAppKategoryName + ' </td>' +
+                    '<td style = "display:none">' + kategoriApp[i].Id + ' </td>' +
                     '<td >' + kategoriApp[i].LinkAppKategoryName + ' </td>' +
-                    '<td align="Center"><input type="button"  class="button2 btnDelete" value="Hapus"/> </td> ' +
+                    '<td align="Center"><input type="button"  class="button2 btnEdit" value="Ubah"/></td> ' +
                     '</tr>';
                     $(strhtml).appendTo($("#tblMasterKategoriApp"));
                 }
@@ -108,9 +110,11 @@ function deletekategoriApp() {
 function savekategoriApp() {
     var EditMethod = true;
     var editMode = $("#hfEditMode").val();
-    if (editMode == 0) EditMethod = false;
     var masterkategoriApp = new Object();
-    masterkategoriApp.LinkAppKategoryName = $("#txtNamaKategoriApp").val();
+
+    if (editMode == 0)
+    { EditMethod = false; } else { masterkategoriApp.Id = $("#hfId").val(); }    
+    masterkategoriApp.LinkAppKategoryName = $("#txtNamaKategoriApp").val();    
     var parameter = new Object();
     parameter.LinkAppKategoryName = JSON.stringify(masterkategoriApp);
     parameter.isEdit = EditMethod;
@@ -131,5 +135,16 @@ function savekategoriApp() {
             alert(response.responseText);
         }
     });
+}
+
+function editMenuMainApp() {
+    var $element = this;
+    var row = $($element).parents("tr:first");
+
+    clearModalMasterkategoriApp();
+    $("#hfEditMode").val("1");
+    $("#modalMasterKategoriApp").modal("show");
+    $("#hfId").val(row.children()[0].innerText.trim());
+    $("#txtNamaKategoriApp").val(row.children()[1].innerText.trim());  
 }
 

@@ -46,6 +46,8 @@ namespace PGE.Portal.Layouts.PGE.Portal
                     return Constant.INPUT_MAIN_EVENT_CONTROL;
                 case Constant.INPUT_MAIN_NEWS:
                     return Constant.INPUT_MAIN_NEWS_CONTROL;
+                case Constant.MAIN_MENU_TYPE:
+                    return Constant.MAIN_MENU_CONTROL;
                 default: return string.Empty;
             }
         }
@@ -84,6 +86,8 @@ namespace PGE.Portal.Layouts.PGE.Portal
                     return Constant.INPUT_MAIN_EVENT_TITLE;
                 case Constant.INPUT_MAIN_NEWS:
                     return Constant.INPUT_MAIN_NEWS_TITLE;
+                case Constant.MAIN_MENU_TYPE:
+                    return Constant.MAIN_MENU_TITTLE;
                 default: return string.Empty;
             }
         }

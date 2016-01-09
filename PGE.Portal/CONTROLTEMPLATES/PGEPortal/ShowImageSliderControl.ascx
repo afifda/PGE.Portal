@@ -9,22 +9,22 @@
 
 <div id="slide">
 	<a href="#" target="_blank">
-		<img src="/sites/pgeportal/Style%20Library/images/slideshow/1.jpg" alt="images1" />
+		<img src="/Style%20Library/images/slideshow/1.jpg" alt="images1" />
 	</a>
 	<a href="#" target="_blank">
-		<img src="/sites/pgeportal/Style%20Library/images/slideshow/2.jpg" alt="images2" />
+		<img src="/Style%20Library/images/slideshow/2.jpg" alt="images2" />
 	</a>
 	<a href="#" target="_blank">
-		<img src="/sites/pgeportal/Style%20Library/images/slideshow/3.jpg" alt="images3" />
+		<img src="/Style%20Library/images/slideshow/3.jpg" alt="images3" />
 	</a>
 	<a href="#" target="_blank">
-		<img src="/sites/pgeportal/Style%20Library/images/slideshow/4.jpg" alt="images4" />
+		<img src="/Style%20Library/images/slideshow/4.jpg" alt="images4" />
 	</a>
 	<a href="#" target="_blank">
-		<img src="/sites/pgeportal/Style%20Library/images/slideshow/5.JPG" alt="images5" />
+		<img src="/Style%20Library/images/slideshow/5.JPG" alt="images5" />
 	</a>
 	<a href="#" target="_blank">
-		<img src="/sites/pgeportal/Style%20Library/images/slideshow/6.JPG" alt="images6" />
+		<img src="/Style%20Library/images/slideshow/6.JPG" alt="images6" />
 	</a>
 
 </div>

@@ -8,9 +8,10 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="InputKategoryAppControl.ascx.cs" Inherits="PGE.Portal.CONTROLTEMPLATES.PGEPortal.InputKategoryAppControl" %>
 
 <div id="wrapping" class="clearfix">
-        <div class="title-h1">Master Kategory Aplikasi</div>
+    <div class="border-list">	
+        <div class="title-h2">Master Kategory Aplikasi</div>
         <div class="div">
-             <table id="tblMasterKategoriApp" class="tabelgrid">
+             <table id="tblMasterKategoriApp" class="table">
                   <thead>                
                     <tr>                          
                        <th class="header-grid">Nama Kategori Aplikasi</th>                                              
@@ -19,10 +20,10 @@
                  </thead>
            </table>
         </div>
-        <div class="button-template2">
+       <%-- <div class="button-template2">
             <input type="button" id="btnAddKategoriApp" value="Tambah"/>
         </div>
-        
+        --%>
         <div class="modal" id="modalMasterKategoriApp">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -46,6 +47,8 @@
                 </div>
             </div>
         </div>    
-    </div>
+        	<div style="clear:both;"></div>
+    </div>		
+</div>
 
 <script src="../../../_layouts/15/PGE.Portal/js/InputKategoriApp.js" type="text/javascript"></script>

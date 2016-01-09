@@ -8,10 +8,14 @@
 
     $('#btnSaveMasterBottomPic').click(function () {        
         var picPath = $('#fuAttachment').val()
+        var linkTo  = $("#txtLinkTo").val();
         var validationMessage = "";
 
         if (picPath.length < 1) {
             validationMessage += "Picture harus di pilih. \n";
+        }
+        if (linkTo.length < 1) {
+            validationMessage += "Link To harus di isi. \n";
         }
         
         if (validationMessage.length > 0) {
@@ -22,12 +26,21 @@
     });
 
     $('#btnDelBottomPic').click(function () {
-        var row = $('#hfdelrow').val();
+        deleteBottomPic();
+
     }); 
     
-    $('#tblMasterBottomPic').on("click", ".btnDelete", deleteBottomPic);
+    $('#tblMasterBottomPic').on("click", ".btnDelete", showDeleteDialog);
    
 });
+
+function showDeleteDialog() {
+    var $element = this;
+    var row = $($element).parents("tr:first");
+    $("#hfdelrow").val(row.children()[0].innerText)
+    $("#hffilename").val(row.children()[1].innerText)
+    $('#modalMasterBottomPicDelete').modal('show');
+}
 
 function clearModalMasterBottomPic() {        
     var _fileuploadcontrolId = $("#fuAttachment");
@@ -77,13 +90,10 @@ function editMenu() {
     $("#txtUrl").val(row.children()[2].innerText)
 }
 
-function deleteBottomPic() {
-    var $element = this;
-    var row = $($element).parents("tr:first");      
-    
+function deleteBottomPic() {        
     var masterMenu = new Object();
-    masterMenu.Id = row.children()[0].innerText.trim();
-    masterMenu.FileName = row.children()[1].innerText;    
+    masterMenu.Id = $("#hfdelrow").val().trim();
+    masterMenu.FileName = $("#hffilename").val().trim();
 
     var parameter = new Object();
     parameter.fileToUpload = JSON.stringify(masterMenu);
@@ -99,7 +109,8 @@ function deleteBottomPic() {
         async: false,
         success: function (response) {
             var Menu = response.d;
-            if (Menu == "Success") {                
+            if (Menu == "Success") {
+                $('#modalMasterBottomPicDelete').modal('hide');
                 alert("Master Bottom Picture telah dihapus.")
                 Init();
             }
@@ -117,9 +128,7 @@ function saveBottomPic() {
     var masterMenu = new Object();
 
     masterMenu.Path = $("#fuAttachment").val();
-    masterMenu.LinkTo = $("#txtLinkTo").val();
-    //var fname = masterMenu.Path.replace(/\\/g, '/');
-    //masterMenu.FileName = fname.substring(fname.lastIndexOf('/') + 1, fname.lastIndexOf('.'));
+    masterMenu.LinkTo = $("#txtLinkTo").val();   
     var lastIndex = masterMenu.Path.lastIndexOf("\\");
     if (lastIndex >= 0) {
         masterMenu.FileName = masterMenu.Path.substring(lastIndex + 1);

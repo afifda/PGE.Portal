@@ -8,6 +8,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="InputMainPic.ascx.cs" Inherits="PGE.Portal.CONTROLTEMPLATES.PGEPortal.InputMainPic" %>
 
 <div id="wrapping" class="clearfix">
+    <div class="border-list">	
         <div class="title-h2">Master Main Picture</div>
         <div class="div">
              <table id="tblMasterMainPic" class="table">
@@ -21,11 +22,11 @@
            </table>
         </div>
 
-         <div class="button-template2">
+        <div class="button-template2">
             <input type="button" id="btnAddMasterMainPic" value="Tambah" class="button-template"/>
         </div>
 
-    <div class="modal" id="modalMasterMainPic">
+        <div class="modal" id="modalMasterMainPic">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -49,25 +50,23 @@
             </div>
         </div> 
     
-    <div class="modal" id="modalMasterMainPicDelete">
+        <div class="modal" id="modalMasterMainPicDelete">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title">Confirm Delete Main Picture</h4>
-                    </div>    
-                    <div class="modal-body">
-                        <div>                                                                                                                                         
-                            <input name="hfdelrow" class="input" maxlength="50" id="hfdelrow" type="text" />
-                        </div>                
-                    </div>                
+                        <input type="hidden" id="hffilename" />
+                    </div>                                      
                     <div class="modal-footer">
                         <input type="button" id="btnDelMainPic" value="Yes" class="button-template"/>
                         <input type="button" data-dismiss="modal" value="No" class="button-template"/>                        
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>          
+        <div style="clear:both;"></div>
+    </div>   
 </div>
 
 <script src="../../../_layouts/15/PGE.Portal/js/InputMainPic.js" type="text/javascript"></script>

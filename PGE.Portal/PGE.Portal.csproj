@@ -120,6 +120,21 @@
     <Compile Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx.designer.cs">
       <DependentUpon>InputMenuControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\MainMenu.ascx.cs">
+      <DependentUpon>MainMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\PGEPortal\MainMenu.ascx.designer.cs">
+      <DependentUpon>MainMenu.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventPage\EventPage.ascx.cs">
+      <DependentUpon>EventPage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EventPage\EventPage.ascx.g.cs">
+      <DependentUpon>EventPage.ascx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Layouts\GenericPortal.ashx.cs">
       <DependentUpon>GenericPortal.ashx</DependentUpon>
     </Compile>
@@ -162,11 +177,30 @@
     <Compile Include="Layouts\PGE.Portal\BaseLayoutPages.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Layouts\PGE.Portal\NewsPage.aspx.cs">
+      <DependentUpon>NewsPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\PGE.Portal\NewsPage.aspx.designer.cs">
+      <DependentUpon>NewsPage.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewsPage\NewsPage.ascx.cs">
+      <DependentUpon>NewsPage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="NewsPage\NewsPage.ascx.g.cs">
+      <DependentUpon>NewsPage.ascx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CONTROLTEMPLATES\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c718a458-68fe-4b90-9f37-42fbe4a10305}</SharePointProjectItemId>
+    </None>
+    <None Include="EventPage\EventPage.webpart" />
+    <None Include="EventPage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9cc9ff63-0178-4b37-aff3-38e4746af440}</SharePointProjectItemId>
     </None>
     <None Include="Features\Feature2\Feature2.feature">
       <FeatureId>{931a16e1-5cde-4a80-a519-cadbc43a2a8c}</FeatureId>
@@ -180,6 +214,10 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3e38c9cc-96a9-4c6a-9ebd-2aef3d7329d5}</SharePointProjectItemId>
     </None>
+    <None Include="NewsPage\NewsPage.webpart" />
+    <None Include="NewsPage\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{acce7645-0e92-4b6d-b86a-b25131f28c77}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{a12eed65-de71-4a3b-8789-7822142c7f30}</PackageId>
     </None>
@@ -187,11 +225,7 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Layouts\PGE.Portal\css\" />
-    <Folder Include="Features\" />
-    <Folder Include="Layouts\PGE.Portal\images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputBottomPic.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputKategoryAppChildControl.ascx" />
@@ -201,9 +235,15 @@
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMasterNews.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuChildControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\InputMenuControl.ascx" />
+    <Content Include="CONTROLTEMPLATES\PGEPortal\MainMenu.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\MenuControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\ShowImageSliderControl.ascx" />
     <Content Include="CONTROLTEMPLATES\PGEPortal\ShowMenuControl.ascx" />
+    <Content Include="EventPage\Elements.xml" />
+    <Content Include="EventPage\EventPage.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>EventPage.ascx.g.cs</LastGenOutput>
+    </Content>
     <Content Include="Features\Feature2\Feature2.Template.xml">
       <DependentUpon>Feature2.feature</DependentUpon>
     </Content>
@@ -214,7 +254,10 @@
     </Content>
     <Content Include="Layouts\PGE.Portal\AdminPortalPage.aspx" />
     <Content Include="Layouts\PGE.Portal\css\jquery-ui.css" />
+    <Content Include="Layouts\PGE.Portal\images\ajax-loader.gif" />
     <Content Include="Layouts\PGE.Portal\js\date.js" />
+    <Content Include="Layouts\PGE.Portal\js\EventPage.js" />
+    <Content Include="Layouts\PGE.Portal\js\NewsPage.js" />
     <Content Include="Layouts\PGE.Portal\js\HomePage.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoriApp.js" />
     <Content Include="Layouts\PGE.Portal\js\InputKategoryAppChild.js" />
@@ -226,6 +269,12 @@
     <Content Include="Layouts\PGE.Portal\js\InputMenu.js" />
     <Content Include="Layouts\PGE.Portal\js\jquery.dataTables.min.js" />
     <Content Include="Layouts\PGE.Portal\js\jquery.formatCurrency-1.4.0.min.js" />
+    <Content Include="Layouts\PGE.Portal\NewsPage.aspx" />
+    <Content Include="NewsPage\Elements.xml" />
+    <Content Include="NewsPage\NewsPage.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>NewsPage.ascx.g.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PGEPortal.Service\PGEPortal.Service.csproj">

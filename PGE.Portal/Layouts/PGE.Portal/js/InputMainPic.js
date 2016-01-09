@@ -22,12 +22,20 @@
     });
 
     $('#btnDelMainPic').click(function () {
-        var row = $('#hfdelrow').val();
+        deleteMainPic();
     }); 
     
-    $('#tblMasterMainPic').on("click", ".btnDelete", deleteMainPic);
+    $('#tblMasterMainPic').on("click", ".btnDelete", showDeleteDialog);
    
 });
+
+function showDeleteDialog() {
+    var $element = this;
+    var row = $($element).parents("tr:first");
+    $("#hfdelrow").val(row.children()[0].innerText)
+    $("#hffilename").val(row.children()[1].innerText)
+    $('#modalMasterMainPicDelete').modal('show');    
+}
 
 function clearModalMasterMainPic() {        
     var _fileuploadcontrolId = $("#fuAttachment");
@@ -76,13 +84,10 @@ function editMenu() {
     $("#txtUrl").val(row.children()[2].innerText)
 }
 
-function deleteMainPic() {
-    var $element = this;
-    var row = $($element).parents("tr:first");      
-    
+function deleteMainPic() {       
     var masterMenu = new Object();
-    masterMenu.Id = row.children()[0].innerText.trim();
-    masterMenu.FileName = row.children()[1].innerText;    
+    masterMenu.Id =  $("#hfdelrow").val().trim();
+    masterMenu.FileName = $("#hffilename").val().trim();
 
     var parameter = new Object();
     parameter.fileToUpload = JSON.stringify(masterMenu);
@@ -98,7 +103,8 @@ function deleteMainPic() {
         async: false,
         success: function (response) {
             var Menu = response.d;
-            if (Menu == "Success") {                
+            if (Menu == "Success") {
+                $('#modalMasterBottomPicDelete').modal('hide');
                 alert("Master Main Picture telah dihapus.")
                 Init();
             }

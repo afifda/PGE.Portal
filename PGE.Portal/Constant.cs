@@ -18,7 +18,7 @@ namespace PGE.Portal
             public const string INPUT_MAIN_EVENT_CONTROL = "InputMasterEvent.ascx";
             public const string INPUT_MAIN_NEWS_CONTROL = "InputMasterNews.ascx";
             public const string INPUT_BOTTOM_PICTURE_CONTROL = "InputBottomPic.ascx";
-
+            public const string MAIN_MENU_CONTROL = "MainMenu.ascx";
 
             public const string INPUT_MENU_TYPE = "InputMenu";
             public const string INPUT_MENU_CHILD_TYPE = "InputMenuChild";
@@ -28,6 +28,7 @@ namespace PGE.Portal
             public const string INPUT_MAIN_EVENT = "InputMasterEvent";
             public const string INPUT_MAIN_NEWS = "InputMasterNews";
             public const string INPUT_BOTTOM_PICTURE_TYPE = "InputBottomPic";
+            public const string MAIN_MENU_TYPE = "MainMenu";
 
 
             public const string INPUT_MENU_TITLE = "Master Menu";
@@ -38,6 +39,7 @@ namespace PGE.Portal
             public const string INPUT_BOTTOM_PICTURE_TITLE = "Master Bottom Picture";
             public const string INPUT_MAIN_EVENT_TITLE = "Master Main Event";
             public const string INPUT_MAIN_NEWS_TITLE = "Master Main News";
+            public const string MAIN_MENU_TITTLE = "Main Menu";
         #endregion
 
         #region Message

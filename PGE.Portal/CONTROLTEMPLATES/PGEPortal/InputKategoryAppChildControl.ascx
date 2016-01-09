@@ -8,9 +8,10 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="InputKategoryAppChildControl.ascx.cs" Inherits="PGE.Portal.CONTROLTEMPLATES.InputKategoryAppChildControl" %>
 
 <div id="wrapping" class="clearfix">
-        <div class="title-h1">Master Kategory Aplikasi Child</div>
+    <div class="border-list">	
+        <div class="title-h2">Master Kategory Aplikasi Child</div>
         <div class="div">
-             <table id="tblMasterKategoryAppChild" class="tabelgrid">
+             <table id="tblMasterKategoryAppChild" class="table">
                   <thead>                
                     <tr>                          
                        <th class="header-grid">Parent Kategory Name</th> 
@@ -57,7 +58,24 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
+
+        <div class="modal" id="modalMasterKategoryChildDelete">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Confirm Delete Kategory Link Child</h4>
+                    </div>                                    
+                    <div class="modal-footer">
+                        <input type="button" id="btnKatChildDel" value="Yes" class="button-template"/>
+                        <input type="button" data-dismiss="modal" value="No" class="button-template"/>                        
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div style="clear:both;"></div>
+    </div>    
     </div>
 
 <script src="../../../_layouts/15/PGE.Portal/js/InputKategoryAppChild.js" type="text/javascript"></script>

@@ -11,7 +11,6 @@ using System.Web;
 using System.IO;
 
 
-
 namespace PGE.Portal.Layouts.PGE.Portal
 {
     public partial class AdminPortalPage : BaseLayoutPages
@@ -322,7 +321,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity MainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
-                string sites = "http://server-local12:8282/sites/PGEPortal/";
+                string sites = "http://pgekpwfe001/";
                 
                 try
                 {                                                            
@@ -350,7 +349,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                             picLibrary.Update();
                             
                             SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
-                            #region febri
+
                             //where docu is my  document library
                             SPListItemCollection items = docLib.Items;
                             string  urlPicLib ="";                            
@@ -358,67 +357,21 @@ namespace PGE.Portal.Layouts.PGE.Portal
                             foreach (SPListItem item in items)
                             {
 
-                                if (item.Name == mainMenu.FileName) {
+                                if (item.Name == MainMenu.FileName) {
                                     urlPicLib = item.Url;
-                                    mainMenu.Path = sites+urlPicLib;
+                                    MainMenu.Path = sites+urlPicLib;
                                 }
                             }           
 
                              //Here to save url db
-                            if (isEdit) logic.SPUpdate<MainPicEntity>(mainMenu);
-                            else logic.SPSave<MainPicEntity>(mainMenu);
-                            #endregion
-
-                            #region fandi
-                            //string URLIMG = "";
-                            //string FileName = "";
-                            //FileName = mainMenu.FileName;
-                            //URLIMG = site.Url + file.Url;
-                            //try
-                            //{
-                            //    success = logic.SaveImgPic(URLIMG, FileName);
-
-                            //}
-                            //catch (Exception ex)
-                            //{
-                            SPListItemCollection items = docLib.Items;
-                            string urlPicLib = "";
-
-                            foreach (SPListItem item in items)
-                            {
-                            //    return string.Format("Telah terjadi error Pada saat Simpan File to DB. ({0})", ex.Message);
-                            //}
-                            #endregion
-
-
-                                if (item.Name == MainMenu.FileName)
-                                {
-                                    urlPicLib = item.Url;
-                                    MainMenu.Path = sites + urlPicLib;
-                                }
-                            }           
-
-                            // Here to save url db//
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return string.Format("Telah terjadi error. ({0})", ex.Message);
-                }
-                return "Berhasil. Master Main Picture telah disimpan.";
-            }
-
                             BaseLogic logic = new BaseLogic();
                             if (isEdit) logic.SPUpdate<MainPicEntity>(MainMenu);
-                            else logic.SPSave<MainPicEntity>(MainMenu);
+                            else logic.SPSave<MainPicEntity>(MainMenu);                                            
 
-                            #endregion
-
-                          
                         }
                     }
                 }
+                                
                 catch (Exception ex)
                 {
                     return string.Format("Telah terjadi error. ({0})", ex.Message);
@@ -431,17 +384,10 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
-                string sites = "http://server-local12:8282/sites/PGEPortal/";
+                string sites = "http://pgekpwfe001/";
 
-            [System.Web.Services.WebMethod]
-            public static string DeleteMasterMainPic(string fileToUpload)
-            {
-                JavaScriptSerializer serializer = new JavaScriptSerializer();
-                MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
-                string sites = "http://server-local12:8282/sites/PGEPortal/";
-
-                            try
-                            {
+                try
+                  {
                     SPSite site = new SPSite(sites);
                     using (site)
                     {
@@ -465,20 +411,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 }
                 return "Success";
             }
-        #endregion        
-                    SPSite site = new SPSite(sites);
-                    using (site)
-                    {
-                        SPWeb web = site.OpenWeb();
-                        web.AllowUnsafeUpdates = true;
-                        using (web)
-                        {
-                            SPFolder folder = web.Folders["MainGallery"];
-                            SPFile file = folder.Files[mainMenu.FileName];
-                            file.Delete();
-
-                            BaseLogic logic = new BaseLogic();
-                            logic.SPDelete<MainPicEntity>(new MainPicEntity() { Id = mainMenu.Id });
+        #endregion  
 
         #region Master Bottom Pic
             [System.Web.Services.WebMethod]
@@ -489,11 +422,10 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 {
                     BaseLogic logic = new BaseLogic();
                     picList = logic.SPRead<BottomPicEntity>(new BottomPicEntity() { Path = "" });
-                            }
-                    }                                                            
+                                                                     
                 }
-                            catch (Exception ex)
-                            {
+            catch (Exception ex)
+                {
                     return picList;
                 }
                 return picList;
@@ -504,7 +436,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 BottomPicEntity BottomMenu = (BottomPicEntity)serializer.Deserialize(fileToUpload, typeof(BottomPicEntity));
-                string sites = "http://server-local12:8282/sites/PGEPortal/";
+                string sites = "http://pgekpwfe001/";
                 //int success = 0;
                 try
                 {
@@ -537,8 +469,59 @@ namespace PGE.Portal.Layouts.PGE.Portal
                             SPListItemCollection items = docLib.Items;
                             string urlPicLib = "";
 
-                            foreach (SPListItem item in items)
+                           foreach (SPListItem item in items)
                             {
+
+                                if (item.Name == BottomMenu.FileName) {
+                                    urlPicLib = item.Url;
+                                    BottomMenu.Path = sites+urlPicLib;
+                                }
+                            }           
+
+                             //Here to save url db
+                            BaseLogic logic = new BaseLogic();
+                            if (isEdit) logic.SPUpdate<BottomPicEntity>(BottomMenu);
+                            else logic.SPSave<BottomPicEntity>(BottomMenu);                                            
+
+                        }
+                    }
+                }
+                                
+                catch (Exception ex)
+                        {
+                            return string.Format("Telah terjadi error. ({0})", ex.Message);
+                        }
+                    return "Berhasil. Master Bottom Picture telah disimpan.";
+                }        
+            
+            [System.Web.Services.WebMethod]
+            public static string DeleteMasterBottomPic(string fileToUpload)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                BottomPicEntity bottomMenu = (BottomPicEntity)serializer.Deserialize(fileToUpload, typeof(BottomPicEntity));
+                string sites = "http://pgekpwfe001/";
+
+                try
+                  {
+                    SPSite site = new SPSite(sites);
+                    using (site)
+                    {
+                        SPWeb web = site.OpenWeb();
+                        web.AllowUnsafeUpdates = true;
+                        using (web)
+                        {
+                            SPFolder folder = web.Folders["BottomGallery"];
+                            SPFile file = folder.Files[bottomMenu.FileName];
+                            file.Delete();
+
+                            BaseLogic logic = new BaseLogic();
+                            logic.SPDelete<BottomPicEntity>(new BottomPicEntity() { Id = bottomMenu.Id });
+
+                        }
+                    }                                                            
+                }
+                catch (Exception ex)
+                {
                     return string.Format("Telah terjadi error. ({0})", ex.Message);
                 }
                 return "Success";
@@ -553,43 +536,33 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 try
                 {
                     BaseLogic logic = new BaseLogic();
-                    EventList = logic.SPRead<MainEventEntity>(new MainEventEntity() { Tittle= "" });
+                    EventList = logic.SPRead<MainEventEntity>(new MainEventEntity() { Tittle = "" });
                 }
                 catch (Exception)
                 {
-
-                    throw;
-                                if (item.Name == BottomMenu.FileName)
-                                {
-                                    urlPicLib = item.Url;
-                                    BottomMenu.Path = sites + urlPicLib;
-                                }
-                            }
+                    return EventList;
+                }
                 return EventList;
             }
-                            
-                            // Here to save url db//
+
+            // Here to save url db//
             [System.Web.Services.WebMethod]
             public static string SaveMasterEvent(string fileToUpload, bool isEdit)
             {
                 BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainEventEntity mainEvent = (MainEventEntity)serializer.Deserialize(fileToUpload, typeof(MainEventEntity));
-                string sites = "http://affandi:100/sites/pgeportal/";
+                string sites = "http://pgekpwfe001/";
                 try
                 {
                     SPSite site = new SPSite(sites);
-
-                            BaseLogic logic = new BaseLogic();
-                            if (isEdit) logic.SPUpdate<BottomPicEntity>(BottomMenu);
-                            else logic.SPSave<BottomPicEntity>(BottomMenu);
                     using (site)
                     {
                         SPWeb web = site.OpenWeb();
                         web.AllowUnsafeUpdates = true;
                         using (web)
                         {
-                            SPFolder picLibrary = web.Lists["MainGallery"].RootFolder;
+                            SPFolder picLibrary = web.Lists["EventGallery"].RootFolder;
 
 
                             byte[] picFile = null;
@@ -599,54 +572,35 @@ namespace PGE.Portal.Layouts.PGE.Portal
                                 picFile = new byte[(int)fStream.Length];
                                 fStream.Read(picFile, 0, (int)fStream.Length);
                                 fStream.Close();
-                        }
+                            }
 
                             SPFile file = picLibrary.Files.Add(mainEvent.FileName, picFile);
                             picLibrary.Update();
 
-                            SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
-                            #region febri
+                            SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["EventGallery"];
+                        
                             //where docu is my  document library
                             SPListItemCollection items = docLib.Items;
                             string urlPicLib = "";
                             string url = "";
                             foreach (SPListItem item in items)
                             {
-
                                 if (item.Name == mainEvent.FileName)
                                 {
                                     urlPicLib = item.Url;
                                     mainEvent.PicturePath = sites + urlPicLib;
-                    }
-                }
+                                }
+                            }
 
                             //Here to save url db
                             if (isEdit) logic.SPUpdate<MainEventEntity>(mainEvent);
                             else logic.SPSave<MainEventEntity>(mainEvent);
-                            #endregion
-
-                            #region fandi
-                            //string URLIMG = "";
-                            //string FileName = "";
-                            //FileName = mainMenu.FileName;
-                            //URLIMG = site.Url + file.Url;
-                            //try
-                            //{
-                            //    success = logic.SaveImgPic(URLIMG, FileName);
-
-                            //}
-                            //catch (Exception ex)
-                            //{
-
-                            //    return string.Format("Telah terjadi error Pada saat Simpan File to DB. ({0})", ex.Message);
-                            //}
-                            #endregion
-
+                       
 
                         }
                     }
-                       
-                    
+
+
                 }
                 catch (SqlException sqlEx)
                 {
@@ -657,22 +611,17 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 {
                     return string.Format("Telah terjadi error. ({0})", ex.Message);
                 }
-                return "Berhasil. Master Bottom Picture telah disimpan.";
                 return "Berhasil. Master Event telah disimpan.";
             }
 
             [System.Web.Services.WebMethod]
-            public static string DeleteMasterBottomPic(string fileToUpload)
             public static string DeleteMasterEvent(string fileToUpload)
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
-                BottomPicEntity BottomMenu = (BottomPicEntity)serializer.Deserialize(fileToUpload, typeof(BottomPicEntity));
-                string sites = "http://server-local12:8282/sites/PGEPortal/";
-
                 MainEventEntity mainEvent = (MainEventEntity)serializer.Deserialize(fileToUpload, typeof(MainEventEntity));
-                string sites = "http://affandi:100/sites/pgeportal/";
+                string sites = "http://pgekpwfe001/";
                 try
-                {     
+                {
                     SPSite site = new SPSite(sites);
                     using (site)
                     {
@@ -680,14 +629,12 @@ namespace PGE.Portal.Layouts.PGE.Portal
                         web.AllowUnsafeUpdates = true;
                         using (web)
                         {
-                            SPFolder folder = web.Folders["BottomGallery"];
-                            SPFile file = folder.Files[BottomMenu.FileName];
-                            SPFolder folder = web.Folders["MainGallery"];
+                            SPFolder folder = web.Folders["EventGallery"];
                             SPFile file = folder.Files[mainEvent.FileName];
                             file.Delete();
                         }
 
-                            BaseLogic logic = new BaseLogic();
+                        BaseLogic logic = new BaseLogic();
                         logic.SPDelete<MainEventEntity>(new MainEventEntity() { Id = mainEvent.Id });
                     }
                 }
@@ -697,7 +644,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 }
                 return "Success";
             }
-        #endregion
+            #endregion
 
         #region Master News
             [System.Web.Services.WebMethod]
@@ -712,7 +659,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 }
                 catch (Exception)
                 {
-                    
+
                     throw;
                 }
                 return NewsList;
@@ -724,7 +671,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainNewsEntity mainNews = (MainNewsEntity)serializer.Deserialize(fileToUpload, typeof(MainNewsEntity));
-                string sites = "http://affandi:100/sites/pgeportal/";
+                string sites = "http://pgekpwfe001/";
                 try
                 {
                     SPSite site = new SPSite(sites);
@@ -735,7 +682,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                         web.AllowUnsafeUpdates = true;
                         using (web)
                         {
-                            SPFolder picLibrary = web.Lists["MainGallery"].RootFolder;
+                            SPFolder picLibrary = web.Lists["NewsGallery"].RootFolder;
 
 
                             byte[] picFile = null;
@@ -750,8 +697,8 @@ namespace PGE.Portal.Layouts.PGE.Portal
                             SPFile file = picLibrary.Files.Add(mainNews.FileName, picFile);
                             picLibrary.Update();
 
-                            SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["MainGallery"];
-                            #region febri
+                            SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["NewsGallery"];
+                          
                             //where docu is my  document library
                             SPListItemCollection items = docLib.Items;
                             string urlPicLib = "";
@@ -769,32 +716,15 @@ namespace PGE.Portal.Layouts.PGE.Portal
                             //Here to save url db
                             if (isEdit) logic.SPUpdate<MainNewsEntity>(mainNews);
                             else logic.SPSave<MainNewsEntity>(mainNews);
-                            #endregion
+                                                      
 
-                            #region fandi
-                            //string URLIMG = "";
-                            //string FileName = "";
-                            //FileName = mainMenu.FileName;
-                            //URLIMG = site.Url + file.Url;
-                            //try
-                            //{
-                            //    success = logic.SaveImgPic(URLIMG, FileName);
-
-                            //}
-                            //catch (Exception ex)
-                            //{
-
-                            //    return string.Format("Telah terjadi error Pada saat Simpan File to DB. ({0})", ex.Message);
-                            //}
-                            #endregion
-
-                            logic.SPDelete<BottomPicEntity>(new BottomPicEntity() { Id = BottomMenu.Id });
+                            logic.SPDelete<BottomPicEntity>(new BottomPicEntity() { Id = mainNews.Id });
 
                         }
                     }
 
-                   
-                    }                                                            
+
+                }
                 catch (SqlException sqlEx)
                 {
                     if (sqlEx.Message.Contains("duplicate")) return string.Format("News {0} yang anda masukkan telah tersedia", mainNews.NewsText);
@@ -813,7 +743,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainNewsEntity mainNews = (MainNewsEntity)serializer.Deserialize(fileToUpload, typeof(MainNewsEntity));
-                string sites = "http://affandi:100/sites/pgeportal/";
+                string sites = "http://pgekpwfe001/";
                 try
                 {
                     SPSite site = new SPSite(sites);
@@ -823,14 +753,14 @@ namespace PGE.Portal.Layouts.PGE.Portal
                         web.AllowUnsafeUpdates = true;
                         using (web)
                         {
-                            SPFolder folder = web.Folders["MainGallery"];
+                            SPFolder folder = web.Folders["NewsGallery"];
                             SPFile file = folder.Files[mainNews.PicturePath];
                             file.Delete();
                         }
 
                         logic.SPDelete<MainNewsEntity>(new MainNewsEntity() { Id = mainNews.Id });
                     }
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -840,5 +770,40 @@ namespace PGE.Portal.Layouts.PGE.Portal
             }
         #endregion        
 
+            [System.Web.Services.WebMethod]
+            public static List<NewsEntityById> LoadNews(string NewsId)
+            {
+                List<NewsEntityById> NewsList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    NewsList = logic.SPRead<NewsEntityById>(new NewsEntityById() { Id = Convert.ToInt32(NewsId) });
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                return NewsList;
+            }
+
+            [System.Web.Services.WebMethod]
+            public static List<EventEntityById> LoadEvent(string EventId)
+            {
+                List<EventEntityById> EventList = null;
+                try
+                {
+                    BaseLogic logic = new BaseLogic();
+                    EventList = logic.SPRead<EventEntityById>(new EventEntityById() { Id = Convert.ToInt32(EventId) });
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                return EventList;
+            }
     }
 }

@@ -28,11 +28,22 @@
         saveKategoryAppChild();
     });
 
+    $('#btnKatChildDel').click(function () {
+        deleteKategoryAppChild();
+    }); 
+    
     $('#tblMasterKategoryAppChild').on("click", ".btnEdit", editKategoryAppChild);
 
-    $('#tblMasterKategoryAppChild').on("click", ".btnDelete", deleteKategoryAppChild);
+    $('#tblMasterKategoryAppChild').on("click", ".btnDelete", showDeleteDialog);
 
 });
+
+function showDeleteDialog() {
+    var $element = this;
+    var row = $($element).parents("tr:first");
+    $("#hfdelrow").val(row.children()[0].innerText)    
+    $('#modalMasterKategoryChildDelete').modal('show');
+}
 
 function clearModalMasterKategoryAppChild() {
     $("#txtKategoryAppChildName").val("");
@@ -107,25 +118,10 @@ function editKategoryAppChild() {
     $("#txtUrl").val(row.children()[4].innerText);
 }
 
-function deleteKategoryAppChild() {
-    var $element = this;
-    var row = $($element).parents("tr:first");
-    $("#dialog-confirm").html("Apakah anda yakin menghapus Kategory Child ini?");
+function deleteKategoryAppChild() {    
+    var parameter = new Object();
+    parameter.IdChild = $("#hfdelrow").val().trim();
 
-    // Define the Dialog and its properties.
-    $("#dialog-confirm").dialog({
-        resizable: false,
-        modal: true,
-        title: "Warning",
-        height: 150,
-        width: 350,
-        buttons: {
-            "Ya": function () {
-
-                var menuNameChildKey = row.children()[0].innerText;
-                var parameter = {
-                    IdChild: menuNameChildKey
-                };
                 $.ajax({
                     type: "POST",
                     url: window.location.pathname + "/DeleteMasterKategoryAppChild",
@@ -138,22 +134,16 @@ function deleteKategoryAppChild() {
                     success: function (response) {
                         var Menu = response.d;
                         if (Menu == "Success") {
-                            alert("Master Menu telah dihapus.")
+                            $('#modalMasterKategoryChildDelete').modal('hide');
+                            alert("Master Kategory Child telah dihapus.")
                             Init();
                         }
                     },
                     error: function (response) {
                         alert(response.responseText);
-                        $("#modalMasterKategoryAppChild").modal("hide");
+                        $("#modalMasterKategoryChildDelete").modal("hide");
                     }
-                });
-                $(this).dialog('close');
-            },
-            "Tidak": function () {
-                $(this).dialog('close');
-            }
-        }
-    });
+                });                 
 }
 
 function saveKategoryAppChild() {
