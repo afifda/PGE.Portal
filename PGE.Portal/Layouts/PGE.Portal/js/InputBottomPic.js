@@ -132,29 +132,65 @@ function saveBottomPic() {
     var lastIndex = masterMenu.Path.lastIndexOf("\\");
     if (lastIndex >= 0) {
         masterMenu.FileName = masterMenu.Path.substring(lastIndex + 1);
-    }    
+    }
 
-    var parameter = new Object();
-    parameter.fileToUpload = JSON.stringify(masterMenu);
-    parameter.isEdit = EditMethod;
+    //save image to TempFile
+    
+    var DocLink = $("#fuAttachment").get(0);
+    var DocFile = DocLink.files;
+    var LinkTo = $("#txtLinkTo").val();
+    var handlerurl = "/_layouts/15/GenericPortal.ashx?Method=uploadImage&link=" + LinkTo;
+    var files = document.getElementById('fuAttachment').files;
+
+    var data = new FormData();
+    for (var  i=0;i<DocFile.length;i++)
+    {
+        data.append(DocFile[i].name, DocFile[i]);
+    }
+
+    $.ajax({
+        type: "POST",
+        url: handlerurl,
+        data: data,
+        contentType:false,
+        processData:false,
+        datatype: "json",
+        success: function (response) {
+                        var Menu = response;
+                        $("#modalMasterBottomPic").modal("hide");
+                        alert(Menu)
+                        Init();
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                        $("#modalMasterBottomPic").modal("hide");
+                    }
+    });
+    //end
+
+    //save list and DB
+
+    //var parameter = new Object();
+    //parameter.fileToUpload = JSON.stringify(masterMenu);
+    //parameter.isEdit = EditMethod;
         
-        $.ajax({
-            type: "POST",
-            url: window.location.pathname + "/SaveMasterBottomPic",
-            data: JSON.stringify(parameter),
-            contentType: "application/json; charset=utf-8",
-            datatype: "json",
-            async: true,
-            success: function (response) {
-                var Menu = response.d;
-                $("#modalMasterBottomPic").modal("hide");
-                alert(Menu)
-                Init();
-            },
-            error: function (response) {
-                alert(response.responseText);
-                $("#modalMasterBottomPic").modal("hide");
-            }
-        });   
+    //    $.ajax({
+    //        type: "POST",
+    //        url: window.location.pathname + "/SaveMasterBottomPic",
+    //        data: JSON.stringify(parameter),
+    //        contentType: "application/json; charset=utf-8",
+    //        datatype: "json",
+    //        async: true,
+    //        success: function (response) {
+    //            var Menu = response.d;
+    //            $("#modalMasterBottomPic").modal("hide");
+    //            alert(Menu)
+    //            Init();
+    //        },
+    //        error: function (response) {
+    //            alert(response.responseText);
+    //            $("#modalMasterBottomPic").modal("hide");
+    //        }
+    //  });   
 }
 

@@ -321,7 +321,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity MainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 
                 try
                 {                                                            
@@ -384,7 +384,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainPicEntity mainMenu = (MainPicEntity)serializer.Deserialize(fileToUpload, typeof(MainPicEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
 
                 try
                   {
@@ -436,7 +436,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 BottomPicEntity BottomMenu = (BottomPicEntity)serializer.Deserialize(fileToUpload, typeof(BottomPicEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 //int success = 0;
                 try
                 {
@@ -499,7 +499,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 BottomPicEntity bottomMenu = (BottomPicEntity)serializer.Deserialize(fileToUpload, typeof(BottomPicEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
 
                 try
                   {
@@ -552,7 +552,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainEventEntity mainEvent = (MainEventEntity)serializer.Deserialize(fileToUpload, typeof(MainEventEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 try
                 {
                     SPSite site = new SPSite(sites);
@@ -619,7 +619,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
             {
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainEventEntity mainEvent = (MainEventEntity)serializer.Deserialize(fileToUpload, typeof(MainEventEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 try
                 {
                     SPSite site = new SPSite(sites);
@@ -671,7 +671,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainNewsEntity mainNews = (MainNewsEntity)serializer.Deserialize(fileToUpload, typeof(MainNewsEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 try
                 {
                     SPSite site = new SPSite(sites);
@@ -743,7 +743,7 @@ namespace PGE.Portal.Layouts.PGE.Portal
                 BaseLogic logic = new BaseLogic();
                 JavaScriptSerializer serializer = new JavaScriptSerializer();
                 MainNewsEntity mainNews = (MainNewsEntity)serializer.Deserialize(fileToUpload, typeof(MainNewsEntity));
-                string sites = "http://pgekpwfe001/";
+                string sites = "http://server-local12:8282/sites/PGEPortal/";
                 try
                 {
                     SPSite site = new SPSite(sites);

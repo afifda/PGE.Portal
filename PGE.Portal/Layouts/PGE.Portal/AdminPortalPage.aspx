@@ -18,7 +18,7 @@
             height:     100%;
             width:      100%;
             background: rgba( 255, 255, 255, .8 ) 
-                        url('/sites/HumasCSR/_layouts/15/PGE.Portal/images/ajax-loader.gif') 
+                        url('/sites/PGEPortal/Style%20Library/Images/minislide/loading.gif')             
                         50% 50% 
                         no-repeat;
         }
