@@ -154,41 +154,77 @@ function deleteMainPic() {
 }
 
 function saveMainPic() {
-    var EditMethod = true;
-    var editMode = $("#hfEditMode").val();
-    if (editMode == 0) EditMethod = false;
-    var masterEvent = new Object();
-    masterEvent.PicturePath = $("#fuAttachment").val();
-    masterEvent.Tittle = $("#txtTitle").val();
-    masterEvent.DateEvent = $("#txtDataEvent").val();
-    masterEvent.EventText = $("#txtDesc").val();
+    //var EditMethod = true;
+    //var editMode = $("#hfEditMode").val();
+    //if (editMode == 0) EditMethod = false;
+    //var masterEvent = new Object();
+    //masterEvent.PicturePath = $("#fuAttachment").val();
+    //masterEvent.Tittle = $("#txtTitle").val();
+    //masterEvent.DateEvent = $("#txtDataEvent").val();
+    //masterEvent.EventText = $("#txtDesc").val();
 
-    var lastIndex = masterEvent.PicturePath.lastIndexOf("\\");
-    if (lastIndex >= 0) {
-        masterEvent.FileName = masterEvent.PicturePath.substring(lastIndex + 1);
+    //var lastIndex = masterEvent.PicturePath.lastIndexOf("\\");
+    //if (lastIndex >= 0) {
+    //    masterEvent.FileName = masterEvent.PicturePath.substring(lastIndex + 1);
+    //}
+
+    //var parameter = new Object();
+    //parameter.fileToUpload = JSON.stringify(masterEvent);
+    //parameter.isEdit = EditMethod;
+
+    //$.ajax({
+    //    type: "POST",
+    //    url: window.location.pathname + "/SaveMasterEvent",
+    //    data: JSON.stringify(parameter),
+    //    contentType: "application/json; charset=utf-8",
+    //    datatype: "json",
+    //    async: true,
+    //    success: function (response) {
+    //        var Menu = response.d;
+    //        $("#modalMasterEvent").modal("hide");
+    //        $body.removeClass("loading");
+    //        alert(Menu)
+    //        Init();
+    //    },
+    //    error: function (response) {
+    //        alert(response.responseText);s
+    //        $body.removeClass("loading");
+    //        $("#modalMasterEvent").modal("hide");
+    //    }
+    //});
+
+    var DocLink = $("#fuAttachment").get(0);
+    var DocFile = DocLink.files;
+    var files = document.getElementById('fuAttachment').files;
+
+    var Tittle = $("#txtTitle").val();
+    var DateEvent = $("#txtDataEvent").val();
+    var EventText = $("#txtDesc").val();
+
+    var handlerurl = "/_layouts/15/GenericPortal.ashx?Method=uploadimageevent&tittle=" + Tittle + "&dateevent=" + DateEvent + "&text=" + EventText;
+
+    var data = new FormData();
+    for (var i = 0; i < DocFile.length; i++) {
+        data.append(DocFile[i].name, DocFile[i]);
     }
-
-    var parameter = new Object();
-    parameter.fileToUpload = JSON.stringify(masterEvent);
-    parameter.isEdit = EditMethod;
 
     $.ajax({
         type: "POST",
-        url: window.location.pathname + "/SaveMasterEvent",
-        data: JSON.stringify(parameter),
-        contentType: "application/json; charset=utf-8",
+        url: handlerurl,
+        data: data,
+        contentType: false,
+        processData: false,
         datatype: "json",
-        async: true,
         success: function (response) {
-            var Menu = response.d;
+            var Menu = response;
             $("#modalMasterEvent").modal("hide");
             $body.removeClass("loading");
             alert(Menu)
             Init();
         },
         error: function (response) {
-            alert(response.responseText);s
             $body.removeClass("loading");
+            alert(response.responseText);
             $("#modalMasterEvent").modal("hide");
         }
     });

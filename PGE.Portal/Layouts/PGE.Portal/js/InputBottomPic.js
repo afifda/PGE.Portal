@@ -122,17 +122,17 @@ function deleteBottomPic() {
 }
 
 function saveBottomPic() {
-    var EditMethod = true;
-    var editMode = $("#hfEditMode").val();
-    if (editMode == 0) EditMethod = false;       
-    var masterMenu = new Object();
+    //var EditMethod = true;
+    //var editMode = $("#hfEditMode").val();
+    //if (editMode == 0) EditMethod = false;       
+    //var masterMenu = new Object();
 
-    masterMenu.Path = $("#fuAttachment").val();
-    masterMenu.LinkTo = $("#txtLinkTo").val();   
-    var lastIndex = masterMenu.Path.lastIndexOf("\\");
-    if (lastIndex >= 0) {
-        masterMenu.FileName = masterMenu.Path.substring(lastIndex + 1);
-    }
+    //masterMenu.Path = $("#fuAttachment").val();
+    //masterMenu.LinkTo = $("#txtLinkTo").val();   
+    //var lastIndex = masterMenu.Path.lastIndexOf("\\");
+    //if (lastIndex >= 0) {
+    //    masterMenu.FileName = masterMenu.Path.substring(lastIndex + 1);
+    //}
 
     //save image to TempFile
     
@@ -166,31 +166,6 @@ function saveBottomPic() {
                         $("#modalMasterBottomPic").modal("hide");
                     }
     });
-    //end
-
-    //save list and DB
-
-    //var parameter = new Object();
-    //parameter.fileToUpload = JSON.stringify(masterMenu);
-    //parameter.isEdit = EditMethod;
-        
-    //    $.ajax({
-    //        type: "POST",
-    //        url: window.location.pathname + "/SaveMasterBottomPic",
-    //        data: JSON.stringify(parameter),
-    //        contentType: "application/json; charset=utf-8",
-    //        datatype: "json",
-    //        async: true,
-    //        success: function (response) {
-    //            var Menu = response.d;
-    //            $("#modalMasterBottomPic").modal("hide");
-    //            alert(Menu)
-    //            Init();
-    //        },
-    //        error: function (response) {
-    //            alert(response.responseText);
-    //            $("#modalMasterBottomPic").modal("hide");
-    //        }
-    //  });   
+    //end    
 }
 

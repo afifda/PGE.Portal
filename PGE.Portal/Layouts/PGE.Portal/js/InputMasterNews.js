@@ -154,42 +154,78 @@ function deleteMainPic() {
 }
 
 function saveMainPic() {
-    var EditMethod = true;
-    var editMode = $("#hfEditMode").val();
-    if (editMode == 0) EditMethod = false;
-    var masterNews = new Object();
-    masterNews.PicturePath = $("#fuAttachment").val();
-    masterNews.Tittle = $("#txtTitle").val();
-    masterNews.DateNews = $("#txtDateNews").val();
-    masterNews.NewsText = $("#txtDesc").val();
+    //var EditMethod = true;
+    //var editMode = $("#hfEditMode").val();
+    //if (editMode == 0) EditMethod = false;
+    //var masterNews = new Object();
+    //masterNews.PicturePath = $("#fuAttachment").val();
+    //masterNews.Tittle = $("#txtTitle").val();
+    //masterNews.DateNews = $("#txtDateNews").val();
+    //masterNews.NewsText = $("#txtDesc").val();
 
-    var lastIndex = masterNews.PicturePath.lastIndexOf("\\");
-    if (lastIndex >= 0) {
-        masterNews.FileName = masterNews.PicturePath.substring(lastIndex + 1);
+    //var lastIndex = masterNews.PicturePath.lastIndexOf("\\");
+    //if (lastIndex >= 0) {
+    //    masterNews.FileName = masterNews.PicturePath.substring(lastIndex + 1);
+    //}
+
+    //var parameter = new Object();
+    //parameter.fileToUpload = JSON.stringify(masterNews);
+    //parameter.isEdit = EditMethod;
+
+    //$.ajax({
+    //    type: "POST",
+    //    url: window.location.pathname + "/SaveMasterNews",
+    //    data: JSON.stringify(parameter),
+    //    contentType: "application/json; charset=utf-8",
+    //    datatype: "json",
+    //    async: true,
+    //    success: function (response) {
+    //        var Menu = response.d;
+    //        $("#modalMasterNews").modal("hide");
+    //        $body.removeClass("loading");
+    //        alert(Menu)
+    //        Init();
+    //    },
+    //    error: function (response) {
+    //        alert(response.responseText);
+    //        $("#modalMasterNews").modal("hide");
+    //        $body.removeClass("loading");
+    //    }
+    //});
+
+    var DocLink = $("#fuAttachment").get(0);
+    var DocFile = DocLink.files;       
+    var files = document.getElementById('fuAttachment').files;
+
+    var Tittle = $("#txtTitle").val();
+    var DateNews = $("#txtDateNews").val();
+    var NewsText = $("#txtDesc").val();
+
+    var handlerurl = "/_layouts/15/GenericPortal.ashx?Method=uploadimageNews&tittle=" + Tittle + "&datenews=" + DateNews + "&text=" + NewsText;
+
+    var data = new FormData();
+    for (var i = 0; i < DocFile.length; i++) {
+        data.append(DocFile[i].name, DocFile[i]);
     }
-
-    var parameter = new Object();
-    parameter.fileToUpload = JSON.stringify(masterNews);
-    parameter.isEdit = EditMethod;
 
     $.ajax({
         type: "POST",
-        url: window.location.pathname + "/SaveMasterNews",
-        data: JSON.stringify(parameter),
-        contentType: "application/json; charset=utf-8",
+        url: handlerurl,
+        data: data,
+        contentType: false,
+        processData: false,
         datatype: "json",
-        async: true,
         success: function (response) {
-            var Menu = response.d;
+            var Menu = response;
             $("#modalMasterNews").modal("hide");
             $body.removeClass("loading");
             alert(Menu)
             Init();
         },
         error: function (response) {
+            $body.removeClass("loading");
             alert(response.responseText);
             $("#modalMasterNews").modal("hide");
-            $body.removeClass("loading");
         }
     });
 }

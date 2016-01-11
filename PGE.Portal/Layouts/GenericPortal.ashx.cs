@@ -43,11 +43,23 @@ namespace PGE.Portal.Layouts
                 case "bottompic":
                     GetBottomPic(context);
                     break;
-
                 case"uploadimage":
                     string LinkTo = context.Request.Params["link"];
                     UploadFileImage(context, LinkTo);
                     break;
+                case "uploadimagenews":
+                    string Tittle = context.Request.Params["tittle"];
+                    string DateNews = context.Request.Params["datenews"];
+                    string NewsText = context.Request.Params["text"];
+                    UploadFileImageNews(context, Tittle, DateNews, NewsText);
+                    break;
+                case "uploadimageevent":
+                    string TittleEvent = context.Request.Params["tittle"];
+                    string DateEvent = context.Request.Params["dateevent"];
+                    string EventText = context.Request.Params["text"];
+                    UploadFileImageEvent(context, TittleEvent, DateEvent, EventText);
+                    break;
+                    
             }
         }
 
@@ -163,6 +175,84 @@ namespace PGE.Portal.Layouts
             context.Response.Write(new JavaScriptSerializer().Serialize(result));
         }
 
+        private void UploadFileImageNews(HttpContext context, string Tittle, string DateNews, string NewsText)
+        {
+            string result = string.Empty;
+            List<MainNewsEntity> newsList = new List<MainNewsEntity>();
+            MainNewsEntity news = new MainNewsEntity();
+            if (context.Request.Files.Count > 0)
+            {
+                SPSecurity.RunWithElevatedPrivileges(delegate()
+                {
+                    //string tempFolder = System.Configuration.ConfigurationManager.AppSettings[TEMP_FILE];
+                    string tempFolder = TEMP_FILE;
+                    if (!Directory.Exists(tempFolder))
+                    {
+                        Directory.CreateDirectory(tempFolder);
+                    }
+                    HttpFileCollection files = context.Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        HttpPostedFile file = files[i];
+                        string fnamefile = Path.GetFileName(file.FileName);
+                        string fnamepath = Path.GetFullPath(file.FileName);
+                        string fname = tempFolder + fnamefile;
+                        string ftemporary = fname;
+                        file.SaveAs(fname);
+                        news.PicturePath = fname;
+                        news.Tittle = Tittle;
+                        news.DateNews = Convert.ToDateTime(DateNews);
+                        news.NewsText = NewsText;
+                        news.FileName = fnamefile;
+                        newsList.Add(news);
+                    }
+                    //call save to list and DB
+                    result = SaveMasterNews(news, false);
+                    //end
+                });
+            }
+            context.Response.Write(new JavaScriptSerializer().Serialize(result));
+        }
+
+        private void UploadFileImageEvent(HttpContext context, string Tittle, string DateEvent, string EventText)
+        {
+            string result = string.Empty;
+            List<MainEventEntity> eventList = new List<MainEventEntity>();
+            MainEventEntity events = new MainEventEntity();
+            if (context.Request.Files.Count > 0)
+            {
+                SPSecurity.RunWithElevatedPrivileges(delegate()
+                {
+                    //string tempFolder = System.Configuration.ConfigurationManager.AppSettings[TEMP_FILE];
+                    string tempFolder = TEMP_FILE;
+                    if (!Directory.Exists(tempFolder))
+                    {
+                        Directory.CreateDirectory(tempFolder);
+                    }
+                    HttpFileCollection files = context.Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        HttpPostedFile file = files[i];
+                        string fnamefile = Path.GetFileName(file.FileName);
+                        string fnamepath = Path.GetFullPath(file.FileName);
+                        string fname = tempFolder + fnamefile;
+                        string ftemporary = fname;
+                        file.SaveAs(fname);
+                        events.PicturePath = fname;
+                        events.Tittle = Tittle;
+                        events.DateEvent = Convert.ToDateTime(DateEvent);
+                        events.EventText = EventText;
+                        events.FileName = fnamefile;
+                        eventList.Add(events);
+                    }
+                    //call save to list and DB
+                    result = SaveMasterEvent(events, false);
+                    //end
+                });
+            }
+            context.Response.Write(new JavaScriptSerializer().Serialize(result));
+        }
+
         public static string SaveMasterBottomPic(BottomPicEntity attachment, bool isEdit)
         {
             string sites = "http://server-local12:8282/sites/PGEPortal/";
@@ -222,7 +312,127 @@ namespace PGE.Portal.Layouts
                 return string.Format("Telah terjadi error. ({0})", ex.Message);
             }
             return "Berhasil. Master Bottom Picture telah disimpan.";
-        }       
+        }
+
+        public static string SaveMasterNews(MainNewsEntity news, bool isEdit)
+        {            
+            string sites = "http://server-local12:8282/sites/PGEPortal/";
+            try
+            {
+                SPSite site = new SPSite(sites);
+
+                using (site)
+                {
+                    SPWeb web = site.OpenWeb();
+                    web.AllowUnsafeUpdates = true;
+                    using (web)
+                    {
+                        SPFolder picLibrary = web.Lists["NewsGallery"].RootFolder;
+
+
+                        byte[] picFile = null;
+
+                        using (FileStream fStream = new FileStream(news.PicturePath, FileMode.Open))
+                        {
+                            picFile = new byte[(int)fStream.Length];
+                            fStream.Read(picFile, 0, (int)fStream.Length);
+                            fStream.Close();
+                        }
+
+                        SPFile file = picLibrary.Files.Add(news.FileName, picFile);
+                        picLibrary.Update();
+
+                        SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["NewsGallery"];
+
+                        //where docu is my  document library
+                        SPListItemCollection items = docLib.Items;
+                        string urlPicLib = "";
+                        string url = "";
+                        foreach (SPListItem item in items)
+                        {
+
+                            if (item.Name == news.FileName)
+                            {
+                                urlPicLib = item.Url;
+                                news.PicturePath = (sites + urlPicLib).Replace(" ", "%20");                             
+                            }
+                        }
+
+                        //Here to save url db
+                        BaseLogic logic = new BaseLogic();
+                        if (isEdit) logic.SPUpdate<MainNewsEntity>(news);
+                        else logic.SPSave<MainNewsEntity>(news);
+                        //logic.SPDelete<BottomPicEntity>(new BottomPicEntity() { Id = mainNews.Id });
+
+                    }
+                }
+
+
+            }            
+            catch (Exception ex)
+            {
+                return string.Format("Telah terjadi error. ({0})", ex.Message);
+            }
+            return "Berhasil. Master News telah disimpan.";
+        }
+
+        public static string SaveMasterEvent(MainEventEntity events, bool isEdit)
+        {            
+            string sites = "http://server-local12:8282/sites/PGEPortal/";
+            try
+            {
+                SPSite site = new SPSite(sites);
+                using (site)
+                {
+                    SPWeb web = site.OpenWeb();
+                    web.AllowUnsafeUpdates = true;
+                    using (web)
+                    {
+                        SPFolder picLibrary = web.Lists["EventGallery"].RootFolder;
+
+
+                        byte[] picFile = null;
+
+                        using (FileStream fStream = new FileStream(events.PicturePath, FileMode.Open))
+                        {
+                            picFile = new byte[(int)fStream.Length];
+                            fStream.Read(picFile, 0, (int)fStream.Length);
+                            fStream.Close();
+                        }
+
+                        SPFile file = picLibrary.Files.Add(events.FileName, picFile);
+                        picLibrary.Update();
+
+                        SPDocumentLibrary docLib = (SPDocumentLibrary)web.Lists["EventGallery"];
+
+                        //where docu is my  document library
+                        SPListItemCollection items = docLib.Items;
+                        string urlPicLib = "";
+                        string url = "";
+                        foreach (SPListItem item in items)
+                        {
+                            if (item.Name == events.FileName)
+                            {
+                                urlPicLib = item.Url;
+                                events.PicturePath = (sites + urlPicLib).Replace(" ", "%20");
+                            }
+                        }
+
+                        //Here to save url db
+                        BaseLogic logic = new BaseLogic();
+                        if (isEdit) logic.SPUpdate<MainEventEntity>(events);
+                        else logic.SPSave<MainEventEntity>(events);
+                    }
+                }
+
+
+            }            
+            catch (Exception ex)
+            {
+                return string.Format("Telah terjadi error. ({0})", ex.Message);
+            }
+            return "Berhasil. Master Event telah disimpan.";
+        }
     }
 
 }
